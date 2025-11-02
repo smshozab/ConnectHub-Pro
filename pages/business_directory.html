@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Directory - ConnectHub Pro</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fconnecthub1138back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.9"></script>
+  <script type="module" src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  </head>
+<body class="bg-background">
+    <!-- Navigation Header -->
+    <nav class="bg-white shadow-custom-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <svg class="h-10 w-10 text-primary" viewBox="0 0 40 40" fill="currentColor">
+                        <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 20h16M20 12v16" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="15" cy="15" r="2" fill="currentColor"/>
+                        <circle cx="25" cy="25" r="2" fill="currentColor"/>
+                    </svg>
+                    <span class="ml-3 text-xl font-bold text-primary">ConnectHub Pro</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="homepage.html" class="text-text-secondary hover:text-primary transition-custom">Home</a>
+                    <a href="business_directory.html" class="text-primary font-semibold border-b-2 border-primary pb-1">Businesses</a>
+                    <a href="professional_network.html" class="text-text-secondary hover:text-primary transition-custom">Professionals</a>
+                    <a href="community_dashboard.html" class="text-text-secondary hover:text-primary transition-custom">My Dashboard</a>
+                    <a href="member_profile_pages.html" class="text-text-secondary hover:text-primary transition-custom">Community</a>
+                </div>
+                
+                <!-- CTA Button -->
+                <div class="hidden md:block">
+                    <a href="profile_creation_wizard.html" class="btn-primary">Join Now</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2" id="mobile-menu-btn">
+                    <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-border">
+                    <a href="homepage.html" class="block px-3 py-2 text-text-secondary hover:text-primary">Home</a>
+                    <a href="business_directory.html" class="block px-3 py-2 text-primary font-semibold">Businesses</a>
+                    <a href="professional_network.html" class="block px-3 py-2 text-text-secondary hover:text-primary">Professionals</a>
+                    <a href="community_dashboard.html" class="block px-3 py-2 text-text-secondary hover:text-primary">My Dashboard</a>
+                    <a href="member_profile_pages.html" class="block px-3 py-2 text-text-secondary hover:text-primary">Community</a>
+                    <a href="profile_creation_wizard.html" class="block px-3 py-2 btn-primary text-center mt-4">Join Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-primary-50 to-surface py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h1 class="text-4xl lg:text-5xl font-bold text-primary mb-4">
+                    Discover Local <span class="text-gradient font-accent">Business Excellence</span>
+                </h1>
+                <p class="text-xl text-text-secondary max-w-3xl mx-auto">
+                    Connect with trusted local businesses in your community. From innovative startups to established enterprises, find the perfect partner for your next project.
+                </p>
+            </div>
+            
+            <!-- Search and Filter Bar -->
+            <div class="max-w-5xl mx-auto bg-white rounded-2xl p-6 shadow-custom-lg">
+                <div class="flex flex-col lg:flex-row gap-4 mb-6">
+                    <!-- Search Input -->
+                    <div class="flex-1 relative">
+                        <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                        <input type="text" id="search-input" placeholder="Search businesses, services, or keywords..." 
+                               class="input-field pl-12 text-lg h-14">
+                    </div>
+                    
+                    <!-- Category Filter -->
+                    <div class="relative">
+                        <select id="category-filter" class="input-field h-14 pr-10 appearance-none bg-white min-w-48">
+                            <option value="">All Categories</option>
+                            <option value="technology">Technology</option>
+                            <option value="marketing">Marketing & Advertising</option>
+                            <option value="consulting">Consulting</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="finance">Finance & Accounting</option>
+                            <option value="retail">Retail & E-commerce</option>
+                            <option value="food">Food & Beverage</option>
+                            <option value="construction">Construction</option>
+                            <option value="education">Education</option>
+                            <option value="creative">Creative Services</option>
+                        </select>
+                        <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-secondary pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </div>
+                    
+                    <!-- Location Filter -->
+                    <div class="relative">
+                        <select id="location-filter" class="input-field h-14 pr-10 appearance-none bg-white min-w-40">
+                            <option value="">All Locations</option>
+                            <option value="5">Within 5 miles</option>
+                            <option value="10">Within 10 miles</option>
+                            <option value="25">Within 25 miles</option>
+                            <option value="50">Within 50 miles</option>
+                        </select>
+                        <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-secondary pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <!-- Advanced Filters -->
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex flex-wrap gap-3">
+                        <button class="px-4 py-2 bg-primary-100 text-primary rounded-full text-sm hover:bg-primary-200 transition-custom filter-btn" data-filter="rating">
+                            <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            Top Rated
+                        </button>
+                        <button class="px-4 py-2 bg-accent-100 text-accent rounded-full text-sm hover:bg-accent-200 transition-custom filter-btn" data-filter="new">
+                            <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                            New Members
+                        </button>
+                        <button class="px-4 py-2 bg-secondary-100 text-secondary rounded-full text-sm hover:bg-secondary-200 transition-custom filter-btn" data-filter="verified">
+                            <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                            </svg>
+                            Verified
+                        </button>
+                    </div>
+                    
+                    <div class="flex items-center gap-3">
+                        <!-- View Toggle -->
+                        <div class="flex bg-surface rounded-lg p-1">
+                            <button id="grid-view" class="p-2 rounded text-primary bg-white shadow-custom-sm">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                                </svg>
+                            </button>
+                            <button id="list-view" class="p-2 rounded text-text-secondary hover:text-primary transition-custom">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <!-- Reset Filters -->
+                        <button id="reset-filters" class="text-text-secondary hover:text-primary transition-custom">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Results Header -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8">
+                <div>
+                    <h2 class="text-2xl font-bold text-primary mb-2">Local Business Directory</h2>
+                    <p class="text-text-secondary" id="results-count">Showing 24 businesses in your area</p>
+                </div>
+                
+                <!-- Sort Options -->
+                <div class="flex items-center gap-4 mt-4 sm:mt-0">
+                    <span class="text-sm text-text-secondary">Sort by:</span>
+                    <select id="sort-select" class="input-field py-2 px-3 text-sm">
+                        <option value="relevance">Relevance</option>
+                        <option value="rating">Highest Rated</option>
+                        <option value="newest">Newest First</option>
+                        <option value="alphabetical">A-Z</option>
+                        <option value="distance">Distance</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Business Grid -->
+            <div id="business-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Business Card 1 -->
+                <div class="card hover:shadow-custom-lg transition-all duration-300 group business-card" data-category="food" data-rating="4.9">
+                    <div class="relative mb-4">
+                        <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1729227761161-c721fa030ad2" 
+                                 alt="Modern coffee shop interior with warm lighting, comfortable seating area, and professional barista workspace" 
+                                 class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                                 onerror="this.src='https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=2940&auto=format&fit=crop'; this.onerror=null;">
+                        </div>
+                        <button class="absolute top-3 right-3 p-2 bg-white rounded-full shadow-custom-sm hover:bg-primary hover:text-white transition-custom bookmark-btn">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                            </svg>
+                        </button>
+                        <div class="absolute bottom-3 left-3 bg-success text-white px-2 py-1 rounded-full text-xs font-medium">
+                            Verified
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start justify-between mb-3">
+                        <h3 class="text-xl font-semibold text-primary group-hover:text-primary-600 transition-custom">Brew & Connect Café</h3>
+                        <div class="flex items-center text-warning">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="ml-1 text-sm font-medium">4.9</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-text-secondary mb-4">Community-focused café offering co-working spaces and networking events for local professionals. Specialty coffee and fresh pastries daily.</p>
+                    
+                    <div class="flex items-center text-sm text-text-secondary mb-4">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        Downtown District • 0.8 miles
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-accent-100 text-accent-600 rounded-full text-sm font-medium">Food & Beverage</span>
+                        <span class="px-3 py-1 bg-primary-100 text-primary rounded-full text-sm">Co-working</span>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center text-sm text-text-secondary">
+                            <svg class="w-4 h-4 mr-1 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                            </svg>
+                            Open Now
+                        </div>
+                        <a href="member_profile_pages.html?id=brew-connect" class="text-primary font-semibold hover:text-primary-600 transition-custom">View Profile</a>
+                    </div>
+                </div>
+
+                <!-- Business Card 2 -->
+                <div class="card hover:shadow-custom-lg transition-all duration-300 group business-card" data-category="technology" data-rating="4.8">
+                    <div class="relative mb-4">
+                        <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1662638600507-0846616ec508" 
+                                 alt="Software development workspace with multiple monitors displaying code, modern office setup with collaborative team environment" 
+                                 class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                                 onerror="this.src='https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'; this.onerror=null;">
+                        </div>
+                        <button class="absolute top-3 right-3 p-2 bg-white rounded-full shadow-custom-sm hover:bg-primary hover:text-white transition-custom bookmark-btn">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                            </svg>
+                        </button>
+                        <div class="absolute bottom-3 left-3 bg-success text-white px-2 py-1 rounded-full text-xs font-medium">
+                            Verified
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start justify-between mb-3">
+                        <h3 class="text-xl font-semibold text-primary group-hover:text-primary-600 transition-custom">TechForward Solutions</h3>
+                        <div class="flex items-center text-warning">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="ml-1 text-sm font-medium">4.8</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-text-secondary mb-4">Full-stack development agency specializing in custom web applications and digital transformation for growing businesses.</p>
+                    
+                    <div class="flex items-center text-sm text-text-secondary mb-4">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        Tech Hub • 1.2 miles
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-accent-100 text-accent-600 rounded-full text-sm font-medium">Technology</span>
+                        <span class="px-3 py-1 bg-primary-100 text-primary rounded-full text-sm">Web Development</span>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center text-sm text-text-secondary">
+                            <svg class="w-4 h-4 mr-1 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                            </svg>
+                            Available
+                        </div>
+                        <a href="member_profile_pages.html?id=techforward" class="text-primary font-semibold hover:text-primary-600 transition-custom">View Profile</a>
+                    </div>
+                </div>
+
+                <!-- Business Card 3 -->
+                <div class="card hover:shadow-custom-lg transition-all duration-300 group business-card" data-category="marketing" data-rating="4.7">
+                    <div class="relative mb-4">
+                        <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1690192078982-d3d2f89059ee" 
+                                 alt="Creative marketing agency office with colorful design elements, collaborative workspace, and team brainstorming session" 
+                                 class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                                 onerror="this.src='https://images.pixabay.com/photo/2015/01/08/18/27/startup-593341_1280.jpg'; this.onerror=null;">
+                        </div>
+                        <button class="absolute top-3 right-3 p-2 bg-white rounded-full shadow-custom-sm hover:bg-primary hover:text-white transition-custom bookmark-btn">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                            </svg>
+                        </button>
+                        <div class="absolute bottom-3 left-3 bg-accent text-white px-2 py-1 rounded-full text-xs font-medium">
+                            New Member
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start justify-between mb-3">
+                        <h3 class="text-xl font-semibold text-primary group-hover:text-primary-600 transition-custom">Creative Minds Agency</h3>
+                        <div class="flex items-center text-warning">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="ml-1 text-sm font-medium">4.7</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-text-secondary mb-4">Award-winning marketing agency helping local businesses build their brand and reach new customers through innovative campaigns.</p>
+                    
+                    <div class="flex items-center text-sm text-text-secondary mb-4">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        Creative District • 2.1 miles
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-accent-100 text-accent-600 rounded-full text-sm font-medium">Marketing</span>
+                        <span class="px-3 py-1 bg-primary-100 text-primary rounded-full text-sm">Branding</span>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center text-sm text-text-secondary">
+                            <svg class="w-4 h-4 mr-1 text-warning" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
+                            </svg>
+                            Busy
+                        </div>
+                        <a href="member_profile_pages.html?id=creative-minds" class="text-primary font-semibold hover:text-primary-600 transition-custom">View Profile</a>
+                    </div>
+                </div>
+
+                <!-- Business Card 4 -->
+                <div class="card hover:shadow-custom-lg transition-all duration-300 group business-card" data-category="consulting" data-rating="4.9">
+                    <div class="relative mb-4">
+                        <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd" 
+                                 alt="Professional business consulting meeting with diverse team members discussing strategy around modern conference table" 
+                                 class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                                 onerror="this.src='https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2940&auto=format&fit=crop'; this.onerror=null;">
+                        </div>
+                        <button class="absolute top-3 right-3 p-2 bg-white rounded-full shadow-custom-sm hover:bg-primary hover:text-white transition-custom bookmark-btn">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                            </svg>
+                        </button>
+                        <div class="absolute bottom-3 left-3 bg-success text-white px-2 py-1 rounded-full text-xs font-medium">
+                            Verified
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start justify-between mb-3">
+                        <h3 class="text-xl font-semibold text-primary group-hover:text-primary-600 transition-custom">Strategic Growth Partners</h3>
+                        <div class="flex items-center text-warning">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="ml-1 text-sm font-medium">4.9</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-text-secondary mb-4">Business strategy consulting firm helping startups and SMEs achieve sustainable growth through data-driven insights.</p>
+                    
+                    <div class="flex items-center text-sm text-text-secondary mb-4">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        Business District • 1.5 miles
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-accent-100 text-accent-600 rounded-full text-sm font-medium">Consulting</span>
+                        <span class="px-3 py-1 bg-primary-100 text-primary rounded-full text-sm">Strategy</span>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center text-sm text-text-secondary">
+                            <svg class="w-4 h-4 mr-1 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                            </svg>
+                            Available
+                        </div>
+                        <a href="member_profile_pages.html?id=strategic-growth" class="text-primary font-semibold hover:text-primary-600 transition-custom">View Profile</a>
+                    </div>
+                </div>
+
+                <!-- Business Card 5 -->
+                <div class="card hover:shadow-custom-lg transition-all duration-300 group business-card" data-category="healthcare" data-rating="4.8">
+                    <div class="relative mb-4">
+                        <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1734787277873-b9b25ec2196d" 
+                                 alt="Modern healthcare clinic interior with comfortable waiting area, professional medical equipment, and welcoming reception desk" 
+                                 class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                                 onerror="this.src='https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'; this.onerror=null;">
+                        </div>
+                        <button class="absolute top-3 right-3 p-2 bg-white rounded-full shadow-custom-sm hover:bg-primary hover:text-white transition-custom bookmark-btn">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                            </svg>
+                        </button>
+                        <div class="absolute bottom-3 left-3 bg-success text-white px-2 py-1 rounded-full text-xs font-medium">
+                            Verified
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start justify-between mb-3">
+                        <h3 class="text-xl font-semibold text-primary group-hover:text-primary-600 transition-custom">Wellness First Clinic</h3>
+                        <div class="flex items-center text-warning">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="ml-1 text-sm font-medium">4.8</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-text-secondary mb-4">Comprehensive healthcare services focusing on preventive care and wellness programs for the local community.</p>
+                    
+                    <div class="flex items-center text-sm text-text-secondary mb-4">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        Medical Center • 0.9 miles
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-accent-100 text-accent-600 rounded-full text-sm font-medium">Healthcare</span>
+                        <span class="px-3 py-1 bg-primary-100 text-primary rounded-full text-sm">Wellness</span>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center text-sm text-text-secondary">
+                            <svg class="w-4 h-4 mr-1 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                            </svg>
+                            Open Now
+                        </div>
+                        <a href="member_profile_pages.html?id=wellness-first" class="text-primary font-semibold hover:text-primary-600 transition-custom">View Profile</a>
+                    </div>
+                </div>
+
+                <!-- Business Card 6 -->
+                <div class="card hover:shadow-custom-lg transition-all duration-300 group business-card" data-category="finance" data-rating="4.6">
+                    <div class="relative mb-4">
+                        <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1574674082930-f0cf3d1cfb46" 
+                                 alt="Professional financial advisory office with modern meeting room, charts and graphs on displays, and comfortable client consultation area" 
+                                 class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                                 onerror="this.src='https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'; this.onerror=null;">
+                        </div>
+                        <button class="absolute top-3 right-3 p-2 bg-white rounded-full shadow-custom-sm hover:bg-primary hover:text-white transition-custom bookmark-btn">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                            </svg>
+                        </button>
+                        <div class="absolute bottom-3 left-3 bg-success text-white px-2 py-1 rounded-full text-xs font-medium">
+                            Verified
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start justify-between mb-3">
+                        <h3 class="text-xl font-semibold text-primary group-hover:text-primary-600 transition-custom">Premier Financial Advisors</h3>
+                        <div class="flex items-center text-warning">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="ml-1 text-sm font-medium">4.6</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-text-secondary mb-4">Comprehensive financial planning and investment advisory services for individuals and small businesses.</p>
+                    
+                    <div class="flex items-center text-sm text-text-secondary mb-4">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        Financial District • 1.8 miles
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-accent-100 text-accent-600 rounded-full text-sm font-medium">Finance</span>
+                        <span class="px-3 py-1 bg-primary-100 text-primary rounded-full text-sm">Investment</span>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center text-sm text-text-secondary">
+                            <svg class="w-4 h-4 mr-1 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                            </svg>
+                            Available
+                        </div>
+                        <a href="member_profile_pages.html?id=premier-financial" class="text-primary font-semibold hover:text-primary-600 transition-custom">View Profile</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center mt-12">
+                <button id="load-more" class="btn-primary px-8 py-4">
+                    Load More Businesses
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories Section -->
+    <section class="py-16 bg-gradient-to-br from-primary-50 to-accent-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-4">Business Success Stories</h2>
+                <p class="text-lg text-text-secondary">See how ConnectHub Pro businesses are growing through community connections</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Success Story 1 -->
+                <div class="bg-white rounded-xl p-8 shadow-custom-md">
+                    <div class="flex items-center mb-6">
+                        <img src="https://images.unsplash.com/photo-1620614150934-a75c8c40174d" 
+                             alt="Success story testimonial photo of Michael Chen, restaurant owner, smiling confidently in his establishment" 
+                             class="w-16 h-16 rounded-full object-cover mr-4"
+                             onerror="this.src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2940&auto=format&fit=crop'; this.onerror=null;">
+                        <div>
+                            <h4 class="text-xl font-semibold text-primary">Michael Chen</h4>
+                            <p class="text-text-secondary">Owner, Brew & Connect Café</p>
+                        </div>
+                    </div>
+                    <blockquote class="text-lg text-text-secondary mb-6 italic">
+                        "Since joining ConnectHub Pro, we've partnered with 12 local professionals who now use our space for client meetings. Our revenue increased by 40% in just 6 months."
+                    </blockquote>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center text-warning">
+                            <div class="flex">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <span class="ml-2 text-sm font-medium">5.0</span>
+                        </div>
+                        <span class="text-sm text-success font-medium">+40% Revenue Growth</span>
+                    </div>
+                </div>
+                
+                <!-- Success Story 2 -->
+                <div class="bg-white rounded-xl p-8 shadow-custom-md">
+                    <div class="flex items-center mb-6">
+                        <img src="https://images.unsplash.com/photo-1559911352-f9f2ef5d5266" 
+                             alt="Success story testimonial photo of Lisa Rodriguez, marketing agency founder, in her creative office space" 
+                             class="w-16 h-16 rounded-full object-cover mr-4"
+                             onerror="this.src='https://images.pixabay.com/photo/2016/11/29/03/53/architecture-1867187_1280.jpg'; this.onerror=null;">
+                        <div>
+                            <h4 class="text-xl font-semibold text-primary">Lisa Rodriguez</h4>
+                            <p class="text-text-secondary">Founder, Creative Minds Agency</p>
+                        </div>
+                    </div>
+                    <blockquote class="text-lg text-text-secondary mb-6 italic">
+                        "ConnectHub Pro connected us with 8 new clients in our first quarter. The quality of referrals here is exceptional - everyone is genuinely invested in mutual success."
+                    </blockquote>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center text-warning">
+                            <div class="flex">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <span class="ml-2 text-sm font-medium">5.0</span>
+                        </div>
+                        <span class="text-sm text-success font-medium">8 New Clients</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl lg:text-4xl font-bold mb-4">Ready to Showcase Your Business?</h2>
+            <p class="text-xl mb-8 opacity-90">Join our thriving community of local businesses and start building meaningful professional connections today.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="profile_creation_wizard.html?type=business" class="bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-custom text-lg">
+                    Create Business Profile
+                </a>
+                <a href="professional_network.html" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary transition-custom text-lg">
+                    Browse Professionals
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <svg class="h-8 w-8 text-white" viewBox="0 0 40 40" fill="currentColor">
+                            <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 20h16M20 12v16" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="15" cy="15" r="2" fill="currentColor"/>
+                            <circle cx="25" cy="25" r="2" fill="currentColor"/>
+                        </svg>
+                        <span class="ml-3 text-xl font-bold">ConnectHub Pro</span>
+                    </div>
+                    <p class="text-gray-300 mb-4 max-w-md">The neighborhood square of professional networking. Building authentic connections between local businesses and professionals.</p>
+                    <div class="flex space-x-4">
+                        <a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-custom">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                        </a>
+                        <a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-custom">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-custom">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="homepage.html" class="text-gray-300 hover:text-white transition-custom">Home</a></li>
+                        <li><a href="business_directory.html" class="text-gray-300 hover:text-white transition-custom">Business Directory</a></li>
+                        <li><a href="professional_network.html" class="text-gray-300 hover:text-white transition-custom">Professional Network</a></li>
+                        <li><a href="community_dashboard.html" class="text-gray-300 hover:text-white transition-custom">Community</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Support -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-custom">Help Center</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-custom">Privacy Policy</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-custom">Terms of Service</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-custom">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-primary-700 mt-8 pt-8 text-center">
+                <p class="text-gray-300">&copy; 2025 ConnectHub Pro. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // View toggle functionality
+        const gridView = document.getElementById('grid-view');
+        const listView = document.getElementById('list-view');
+        const businessGrid = document.getElementById('business-grid');
+
+        gridView.addEventListener('click', function() {
+            businessGrid.className = 'grid md:grid-cols-2 lg:grid-cols-3 gap-8';
+            gridView.classList.add('bg-white', 'shadow-custom-sm', 'text-primary');
+            gridView.classList.remove('text-text-secondary');
+            listView.classList.remove('bg-white', 'shadow-custom-sm', 'text-primary');
+            listView.classList.add('text-text-secondary');
+        });
+
+        listView.addEventListener('click', function() {
+            businessGrid.className = 'grid grid-cols-1 gap-6';
+            listView.classList.add('bg-white', 'shadow-custom-sm', 'text-primary');
+            listView.classList.remove('text-text-secondary');
+            gridView.classList.remove('bg-white', 'shadow-custom-sm', 'text-primary');
+            gridView.classList.add('text-text-secondary');
+        });
+
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const businessCards = document.querySelectorAll('.business-card');
+        const searchInput = document.getElementById('search-input');
+        const categoryFilter = document.getElementById('category-filter');
+        const locationFilter = document.getElementById('location-filter');
+        const sortSelect = document.getElementById('sort-select');
+        const resetFilters = document.getElementById('reset-filters');
+        const resultsCount = document.getElementById('results-count');
+
+        let activeFilters = {
+            search: '',
+            category: '',
+            location: '',
+            rating: false,
+            new: false,
+            verified: false
+        };
+
+        function updateResults() {
+            let visibleCount = 0;
+            businessCards.forEach(card => {
+                let shouldShow = true;
+
+                // Search filter
+                if (activeFilters.search) {
+                    const text = card.textContent.toLowerCase();
+                    if (!text.includes(activeFilters.search.toLowerCase())) {
+                        shouldShow = false;
+                    }
+                }
+
+                // Category filter
+                if (activeFilters.category && card.dataset.category !== activeFilters.category) {
+                    shouldShow = false;
+                }
+
+                // Rating filter
+                if (activeFilters.rating) {
+                    const rating = parseFloat(card.dataset.rating);
+                    if (rating < 4.5) {
+                        shouldShow = false;
+                    }
+                }
+
+                // Show/hide card
+                if (shouldShow) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            resultsCount.textContent = `Showing ${visibleCount} businesses in your area`;
+        }
+
+        // Search input
+        searchInput.addEventListener('input', function() {
+            activeFilters.search = this.value;
+            updateResults();
+        });
+
+        // Category filter
+        categoryFilter.addEventListener('change', function() {
+            activeFilters.category = this.value;
+            updateResults();
+        });
+
+        // Filter buttons
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const filter = this.dataset.filter;
+                activeFilters[filter] = !activeFilters[filter];
+                
+                if (activeFilters[filter]) {
+                    this.classList.add('bg-primary', 'text-white');
+                    this.classList.remove('bg-primary-100', 'text-primary', 'bg-accent-100', 'text-accent', 'bg-secondary-100', 'text-secondary');
+                } else {
+                    this.classList.remove('bg-primary', 'text-white');
+                    if (filter === 'rating') {
+                        this.classList.add('bg-primary-100', 'text-primary');
+                    } else if (filter === 'new') {
+                        this.classList.add('bg-accent-100', 'text-accent');
+                    } else if (filter === 'verified') {
+                        this.classList.add('bg-secondary-100', 'text-secondary');
+                    }
+                }
+                
+                updateResults();
+            });
+        });
+
+        // Reset filters
+        resetFilters.addEventListener('click', function() {
+            activeFilters = {
+                search: '',
+                category: '',
+                location: '',
+                rating: false,
+                new: false,
+                verified: false
+            };
+            
+            searchInput.value = '';
+            categoryFilter.value = '';
+            locationFilter.value = '';
+            sortSelect.value = 'relevance';
+            
+            filterButtons.forEach(button => {
+                const filter = button.dataset.filter;
+                button.classList.remove('bg-primary', 'text-white');
+                if (filter === 'rating') {
+                    button.classList.add('bg-primary-100', 'text-primary');
+                } else if (filter === 'new') {
+                    button.classList.add('bg-accent-100', 'text-accent');
+                } else if (filter === 'verified') {
+                    button.classList.add('bg-secondary-100', 'text-secondary');
+                }
+            });
+            
+            updateResults();
+        });
+
+        // Bookmark functionality
+        const bookmarkButtons = document.querySelectorAll('.bookmark-btn');
+        bookmarkButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const svg = this.querySelector('svg');
+                if (svg.style.fill === 'currentColor' || svg.style.fill === '') {
+                    svg.style.fill = 'currentColor';
+                    svg.style.stroke = 'none';
+                    this.classList.add('text-accent');
+                } else {
+                    svg.style.fill = 'none';
+                    svg.style.stroke = 'currentColor';
+                    this.classList.remove('text-accent');
+                }
+            });
+        });
+
+        // Load more functionality
+        document.getElementById('load-more').addEventListener('click', function() {
+            this.innerHTML = '<svg class="w-5 h-5 animate-spin mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>Loading...';
+            
+            setTimeout(() => {
+                this.innerHTML = 'Load More Businesses<svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>';
+            }, 1500);
+        });
+
+        // Add loading states to buttons
+        document.querySelectorAll('button, .btn-primary, .btn-secondary').forEach(button => {
+            button.addEventListener('click', function() {
+                if (!this.href && this.id !== 'load-more') {
+                    this.style.opacity = '0.7';
+                    setTimeout(() => {
+                        this.style.opacity = '1';
+                    }, 300);
+                }
+            });
+        });
+    </script>
+    
+    <!-- Main JavaScript -->
+    <script src="../js/main.js"></script>
+    <!-- Business Directory specific JavaScript -->
+    <script src="../js/business-directory.js"></script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

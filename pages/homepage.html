@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConnectHub Pro - Where Local Business Meets Professional Expertise</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fconnecthub1138back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.9"></script>
+  <script type="module" src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  </head>
+<body class="bg-background">
+    <!-- Navigation Header -->
+    <nav class="bg-white shadow-custom-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <svg class="h-10 w-10 text-primary" viewBox="0 0 40 40" fill="currentColor">
+                        <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 20h16M20 12v16" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="15" cy="15" r="2" fill="currentColor"/>
+                        <circle cx="25" cy="25" r="2" fill="currentColor"/>
+                    </svg>
+                    <span class="ml-3 text-xl font-bold text-primary">ConnectHub Pro</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="homepage.html" class="text-primary font-semibold border-b-2 border-primary pb-1">Home</a>
+                    <a href="business_directory.html" class="text-text-secondary hover:text-primary transition-custom">Businesses</a>
+                    <a href="professional_network.html" class="text-text-secondary hover:text-primary transition-custom">Professionals</a>
+                    <a href="community_dashboard.html" class="text-text-secondary hover:text-primary transition-custom">My Dashboard</a>
+                    <a href="member_profile_pages.html" class="text-text-secondary hover:text-primary transition-custom">Community</a>
+                </div>
+                
+                <!-- CTA Button -->
+                <div class="hidden md:block">
+                    <a href="profile_creation_wizard.html" class="btn-primary">Join Now</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2" id="mobile-menu-btn">
+                    <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-border">
+                    <a href="homepage.html" class="block px-3 py-2 text-primary font-semibold">Home</a>
+                    <a href="business_directory.html" class="block px-3 py-2 text-text-secondary hover:text-primary">Businesses</a>
+                    <a href="professional_network.html" class="block px-3 py-2 text-text-secondary hover:text-primary">Professionals</a>
+                    <a href="community_dashboard.html" class="block px-3 py-2 text-text-secondary hover:text-primary">My Dashboard</a>
+                    <a href="member_profile_pages.html" class="block px-3 py-2 text-text-secondary hover:text-primary">Community</a>
+                    <a href="profile_creation_wizard.html" class="block px-3 py-2 btn-primary text-center mt-4">Join Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-primary-50 to-surface py-20 lg:py-32 overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <svg class="w-full h-full" viewBox="0 0 100 100" fill="none">
+                <defs>
+                    <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                        <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                    </pattern>
+                </defs>
+                <rect width="100" height="100" fill="url(#grid)" class="text-primary"/>
+            </svg>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Hero Content -->
+                <div class="text-center lg:text-left">
+                    <h1 class="text-4xl lg:text-6xl font-bold text-primary mb-6 leading-tight">
+                        Where Local Business Meets 
+                        <span class="text-gradient font-accent">Professional Expertise</span>
+                    </h1>
+                    <p class="text-xl text-text-secondary mb-8 leading-relaxed">
+                        Join ConnectHub Pro - the neighborhood square of professional networking. Build authentic connections, grow your business, and discover opportunities in your community.
+                    </p>
+                    
+                    <!-- Dual Path CTA -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
+                        <a href="profile_creation_wizard.html?type=business" class="btn-primary flex items-center justify-center px-8 py-4 text-lg">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm2 6a2 2 0 114 0 2 2 0 01-4 0zm8 0a2 2 0 114 0 2 2 0 01-4 0z"/>
+                            </svg>
+                            I'm a Business Owner
+                        </a>
+                        <a href="profile_creation_wizard.html?type=professional" class="btn-secondary flex items-center justify-center px-8 py-4 text-lg">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+                            </svg>
+                            I'm a Professional
+                        </a>
+                    </div>
+                    
+                    <!-- Trust Indicators -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-sm text-text-secondary">
+                        <div class="flex items-center">
+                            <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            2,500+ Active Members
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            850+ Successful Connections
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            SSL Secured
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hero Image -->
+                <div class="relative">
+                    <div class="aspect-w-4 aspect-h-3 rounded-2xl overflow-hidden shadow-custom-lg">
+                        <img src="https://images.unsplash.com/photo-1624555130581-1d9cca783bc0" 
+                             alt="Professional networking meeting with diverse business people collaborating around a modern conference table" 
+                             class="w-full h-full object-cover"
+                             onerror="this.src='https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'; this.onerror=null;">
+                    </div>
+                    <!-- Floating Stats -->
+                    <div class="absolute -bottom-6 -left-6 bg-white rounded-lg shadow-custom-md p-4">
+                        <div class="text-2xl font-bold text-primary">320+</div>
+                        <div class="text-sm text-text-secondary">Business Partnerships</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Search Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-4">Find Your Perfect Match</h2>
+                <p class="text-lg text-text-secondary">Search across businesses and professionals in your community</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-surface rounded-2xl p-8 shadow-custom-sm">
+                    <div class="flex flex-col lg:flex-row gap-4">
+                        <!-- Search Input -->
+                        <div class="flex-1 relative">
+                            <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                            <input type="text" placeholder="Search businesses, professionals, or services..." 
+                                   class="input-field pl-12 text-lg h-14">
+                        </div>
+                        
+                        <!-- Category Filter -->
+                        <div class="relative">
+                            <select class="input-field h-14 pr-10 appearance-none bg-white">
+                                <option value="">All Categories</option>
+                                <option value="technology">Technology</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="consulting">Consulting</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="finance">Finance</option>
+                                <option value="retail">Retail</option>
+                            </select>
+                            <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-secondary pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </div>
+                        
+                        <!-- Search Button -->
+                        <button class="btn-primary h-14 px-8 flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                            Search
+                        </button>
+                    </div>
+                    
+                    <!-- Quick Filters -->
+                    <div class="flex flex-wrap gap-2 mt-6">
+                        <span class="text-sm text-text-secondary mr-2">Popular:</span>
+                        <button class="px-3 py-1 bg-primary-100 text-primary rounded-full text-sm hover:bg-primary-200 transition-custom">Web Design</button>
+                        <button class="px-3 py-1 bg-primary-100 text-primary rounded-full text-sm hover:bg-primary-200 transition-custom">Marketing</button>
+                        <button class="px-3 py-1 bg-primary-100 text-primary rounded-full text-sm hover:bg-primary-200 transition-custom">Consulting</button>
+                        <button class="px-3 py-1 bg-primary-100 text-primary rounded-full text-sm hover:bg-primary-200 transition-custom">Photography</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Business Spotlight -->
+    <section class="py-16 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center mb-12">
+                <div>
+                    <h2 class="text-3xl font-bold text-primary mb-2">Featured Business Spotlight</h2>
+                    <p class="text-lg text-text-secondary">Discover successful local businesses making an impact</p>
+                </div>
+                <a href="business_directory.html" class="text-primary font-semibold hover:text-primary-600 transition-custom flex items-center">
+                    View All
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Business Card 1 -->
+                <div class="card hover:shadow-custom-lg transition-all duration-300 group">
+                    <div class="aspect-w-16 aspect-h-9 mb-4 rounded-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1729227761161-c721fa030ad2" 
+                             alt="Modern coffee shop interior with warm lighting and comfortable seating area" 
+                             class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                             onerror="this.src='https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=2940&auto=format&fit=crop'; this.onerror=null;">
+                    </div>
+                    <div class="flex items-start justify-between mb-3">
+                        <h3 class="text-xl font-semibold text-primary">Brew & Connect Café</h3>
+                        <div class="flex items-center text-warning">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="ml-1 text-sm font-medium">4.9</span>
+                        </div>
+                    </div>
+                    <p class="text-text-secondary mb-4">Community-focused café offering co-working spaces and networking events for local professionals.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="px-3 py-1 bg-accent-100 text-accent-600 rounded-full text-sm font-medium">Food & Beverage</span>
+                        <a href="member_profile_pages.html?id=brew-connect" class="text-primary font-semibold hover:text-primary-600 transition-custom">View Profile</a>
+                    </div>
+                </div>
+                
+                <!-- Business Card 2 -->
+                <div class="card hover:shadow-custom-lg transition-all duration-300 group">
+                    <div class="aspect-w-16 aspect-h-9 mb-4 rounded-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1662638600507-0846616ec508" 
+                             alt="Software development workspace with multiple monitors displaying code and modern office setup" 
+                             class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                             onerror="this.src='https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'; this.onerror=null;">
+                    </div>
+                    <div class="flex items-start justify-between mb-3">
+                        <h3 class="text-xl font-semibold text-primary">TechForward Solutions</h3>
+                        <div class="flex items-center text-warning">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="ml-1 text-sm font-medium">4.8</span>
+                        </div>
+                    </div>
+                    <p class="text-text-secondary mb-4">Full-stack development agency specializing in custom web applications and digital transformation.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="px-3 py-1 bg-accent-100 text-accent-600 rounded-full text-sm font-medium">Technology</span>
+                        <a href="member_profile_pages.html?id=techforward" class="text-primary font-semibold hover:text-primary-600 transition-custom">View Profile</a>
+                    </div>
+                </div>
+                
+                <!-- Business Card 3 -->
+                <div class="card hover:shadow-custom-lg transition-all duration-300 group">
+                    <div class="aspect-w-16 aspect-h-9 mb-4 rounded-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1693159682660-c125e71844d8" 
+                             alt="Creative marketing agency office with colorful design elements and collaborative workspace" 
+                             class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                             onerror="this.src='https://images.pixabay.com/photo/2015/01/08/18/27/startup-593341_1280.jpg'; this.onerror=null;">
+                    </div>
+                    <div class="flex items-start justify-between mb-3">
+                        <h3 class="text-xl font-semibold text-primary">Creative Minds Agency</h3>
+                        <div class="flex items-center text-warning">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="ml-1 text-sm font-medium">4.7</span>
+                        </div>
+                    </div>
+                    <p class="text-text-secondary mb-4">Award-winning marketing agency helping local businesses build their brand and reach new customers.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="px-3 py-1 bg-accent-100 text-accent-600 rounded-full text-sm font-medium">Marketing</span>
+                        <a href="member_profile_pages.html?id=creative-minds" class="text-primary font-semibold hover:text-primary-600 transition-custom">View Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Expertise Showcase -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center mb-12">
+                <div>
+                    <h2 class="text-3xl font-bold text-primary mb-2">Professional Expertise Showcase</h2>
+                    <p class="text-lg text-text-secondary">Connect with skilled professionals in your area</p>
+                </div>
+                <a href="professional_network.html" class="text-primary font-semibold hover:text-primary-600 transition-custom flex items-center">
+                    View All
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Professional Card 1 -->
+                <div class="card text-center hover:shadow-custom-lg transition-all duration-300 group">
+                    <div class="relative mb-4">
+                        <img src="https://images.unsplash.com/photo-1558068078-7a6b350aed4a" 
+                             alt="Professional headshot of Sarah Chen, UX/UI Designer, smiling confidently in business attire" 
+                             class="w-20 h-20 rounded-full mx-auto object-cover border-4 border-primary-100 group-hover:border-primary-200 transition-colors"
+                             onerror="this.src='https://images.unsplash.com/photo-1494790108755-2616b612b786?q=80&w=2787&auto=format&fit=crop'; this.onerror=null;">
+                        <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-success rounded-full border-2 border-white"></div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-primary mb-1">Sarah Chen</h3>
+                    <p class="text-accent font-medium mb-2">UX/UI Designer</p>
+                    <p class="text-sm text-text-secondary mb-4">Specializing in user-centered design and digital experiences for local businesses.</p>
+                    <div class="flex flex-wrap gap-1 justify-center mb-4">
+                        <span class="px-2 py-1 bg-primary-100 text-primary text-xs rounded">Figma</span>
+                        <span class="px-2 py-1 bg-primary-100 text-primary text-xs rounded">Adobe XD</span>
+                        <span class="px-2 py-1 bg-primary-100 text-primary text-xs rounded">Prototyping</span>
+                    </div>
+                    <a href="member_profile_pages.html?id=sarah-chen" class="text-primary font-semibold hover:text-primary-600 transition-custom">View Profile</a>
+                </div>
+                
+                <!-- Professional Card 2 -->
+                <div class="card text-center hover:shadow-custom-lg transition-all duration-300 group">
+                    <div class="relative mb-4">
+                        <img src="https://images.unsplash.com/photo-1679316381960-9353631f8ad8" 
+                             alt="Professional headshot of Marcus Rodriguez, Digital Marketing Consultant, in casual business attire" 
+                             class="w-20 h-20 rounded-full mx-auto object-cover border-4 border-primary-100 group-hover:border-primary-200 transition-colors"
+                             onerror="this.src='https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'; this.onerror=null;">
+                        <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-success rounded-full border-2 border-white"></div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-primary mb-1">Marcus Rodriguez</h3>
+                    <p class="text-accent font-medium mb-2">Digital Marketing Consultant</p>
+                    <p class="text-sm text-text-secondary mb-4">Helping businesses grow their online presence through strategic marketing campaigns.</p>
+                    <div class="flex flex-wrap gap-1 justify-center mb-4">
+                        <span class="px-2 py-1 bg-primary-100 text-primary text-xs rounded">SEO</span>
+                        <span class="px-2 py-1 bg-primary-100 text-primary text-xs rounded">PPC</span>
+                        <span class="px-2 py-1 bg-primary-100 text-primary text-xs rounded">Analytics</span>
+                    </div>
+                    <a href="member_profile_pages.html?id=marcus-rodriguez" class="text-primary font-semibold hover:text-primary-600 transition-custom">View Profile</a>
+                </div>
+                
+                <!-- Professional Card 3 -->
+                <div class="card text-center hover:shadow-custom-lg transition-all duration-300 group">
+                    <div class="relative mb-4">
+                        <img src="https://images.unsplash.com/photo-1734456611474-13245d164868" 
+                             alt="Professional headshot of Emily Watson, Business Strategy Consultant, in professional business suit" 
+                             class="w-20 h-20 rounded-full mx-auto object-cover border-4 border-primary-100 group-hover:border-primary-200 transition-colors"
+                             onerror="this.src='https://images.pixabay.com/photo/2017/08/01/01/33/beanie-2562646_1280.jpg'; this.onerror=null;">
+                        <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-success rounded-full border-2 border-white"></div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-primary mb-1">Emily Watson</h3>
+                    <p class="text-accent font-medium mb-2">Business Strategy Consultant</p>
+                    <p class="text-sm text-text-secondary mb-4">Guiding startups and SMEs through strategic planning and operational excellence.</p>
+                    <div class="flex flex-wrap gap-1 justify-center mb-4">
+                        <span class="px-2 py-1 bg-primary-100 text-primary text-xs rounded">Strategy</span>
+                        <span class="px-2 py-1 bg-primary-100 text-primary text-xs rounded">Operations</span>
+                        <span class="px-2 py-1 bg-primary-100 text-primary text-xs rounded">Growth</span>
+                    </div>
+                    <a href="member_profile_pages.html?id=emily-watson" class="text-primary font-semibold hover:text-primary-600 transition-custom">View Profile</a>
+                </div>
+                
+                <!-- Professional Card 4 -->
+                <div class="card text-center hover:shadow-custom-lg transition-all duration-300 group">
+                    <div class="relative mb-4">
+                        <img src="https://images.unsplash.com/photo-1687256457585-3608dfa736c5" 
+                             alt="Professional headshot of David Kim, Full-Stack Developer, in casual tech industry attire" 
+                             class="w-20 h-20 rounded-full mx-auto object-cover border-4 border-primary-100 group-hover:border-primary-200 transition-colors"
+                             onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2787&auto=format&fit=crop'; this.onerror=null;">
+                        <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-success rounded-full border-2 border-white"></div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-primary mb-1">David Kim</h3>
+                    <p class="text-accent font-medium mb-2">Full-Stack Developer</p>
+                    <p class="text-sm text-text-secondary mb-4">Building scalable web applications and custom solutions for growing businesses.</p>
+                    <div class="flex flex-wrap gap-1 justify-center mb-4">
+                        <span class="px-2 py-1 bg-primary-100 text-primary text-xs rounded">React</span>
+                        <span class="px-2 py-1 bg-primary-100 text-primary text-xs rounded">Node.js</span>
+                        <span class="px-2 py-1 bg-primary-100 text-primary text-xs rounded">AWS</span>
+                    </div>
+                    <a href="member_profile_pages.html?id=david-kim" class="text-primary font-semibold hover:text-primary-600 transition-custom">View Profile</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Success Stories -->
+    <section class="py-16 bg-gradient-to-br from-primary-50 to-accent-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-4">Real Connections, Real Results</h2>
+                <p class="text-lg text-text-secondary">See how ConnectHub Pro members are growing their businesses and careers</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-8 mb-12">
+                <!-- Success Story 1 -->
+                <div class="bg-white rounded-xl p-6 shadow-custom-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1724120505656-c1f2cc413d2a" 
+                             alt="Testimonial photo of Alex Thompson, restaurant owner, smiling in his establishment" 
+                             class="w-12 h-12 rounded-full object-cover mr-4"
+                             onerror="this.src='https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'; this.onerror=null;">
+                        <div>
+                            <h4 class="font-semibold text-primary">Alex Thompson</h4>
+                            <p class="text-sm text-text-secondary">Restaurant Owner</p>
+                        </div>
+                    </div>
+                    <p class="text-text-secondary mb-4">"Through ConnectHub Pro, I connected with a local marketing consultant who helped increase our online orders by 150% in just 3 months."</p>
+                    <div class="flex items-center text-warning">
+                        <div class="flex">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                        <span class="ml-2 text-sm font-medium">5.0</span>
+                    </div>
+                </div>
+                
+                <!-- Success Story 2 -->
+                <div class="bg-white rounded-xl p-6 shadow-custom-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1562664348-cb222fdcfa86" 
+                             alt="Testimonial photo of Maria Santos, freelance graphic designer, working at her creative workspace" 
+                             class="w-12 h-12 rounded-full object-cover mr-4"
+                             onerror="this.src='https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2940&auto=format&fit=crop'; this.onerror=null;">
+                        <div>
+                            <h4 class="font-semibold text-primary">Maria Santos</h4>
+                            <p class="text-sm text-text-secondary">Freelance Designer</p>
+                        </div>
+                    </div>
+                    <p class="text-text-secondary mb-4">"I've landed 8 new clients through the platform this year. The quality of connections here is unmatched - everyone is genuinely interested in collaboration."</p>
+                    <div class="flex items-center text-warning">
+                        <div class="flex">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                        <span class="ml-2 text-sm font-medium">5.0</span>
+                    </div>
+                </div>
+                
+                <!-- Success Story 3 -->
+                <div class="bg-white rounded-xl p-6 shadow-custom-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1619468610762-db5d88df3e9d" 
+                             alt="Testimonial photo of James Wilson, tech startup founder, in modern office environment" 
+                             class="w-12 h-12 rounded-full object-cover mr-4"
+                             onerror="this.src='https://images.pixabay.com/photo/2016/11/18/19/07/happy-1836445_1280.jpg'; this.onerror=null;">
+                        <div>
+                            <h4 class="font-semibold text-primary">James Wilson</h4>
+                            <p class="text-sm text-text-secondary">Tech Startup Founder</p>
+                        </div>
+                    </div>
+                    <p class="text-text-secondary mb-4">"ConnectHub Pro helped me find the perfect co-founder and our first major client. The community here truly understands the value of authentic networking."</p>
+                    <div class="flex items-center text-warning">
+                        <div class="flex">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                        <span class="ml-2 text-sm font-medium">5.0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Impact Statistics -->
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <div class="bg-white rounded-lg p-6 shadow-custom-sm">
+                    <div class="text-3xl font-bold text-primary mb-2">2,500+</div>
+                    <div class="text-text-secondary">Active Members</div>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-custom-sm">
+                    <div class="text-3xl font-bold text-accent mb-2">850+</div>
+                    <div class="text-text-secondary">Successful Connections</div>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-custom-sm">
+                    <div class="text-3xl font-bold text-secondary mb-2">320+</div>
+                    <div class="text-text-secondary">Business Partnerships</div>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-custom-sm">
+                    <div class="text-3xl font-bold text-primary mb-2">95%</div>
+                    <div class="text-text-secondary">Member Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl lg:text-4xl font-bold mb-4">Ready to Build Your Network?</h2>
+            <p class="text-xl mb-8 opacity-90">Join thousands of professionals and businesses creating meaningful connections in your community.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="profile_creation_wizard.html" class="bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-custom text-lg">
+                    Get Started Today
+                </a>
+                <a href="business_directory.html" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary transition-custom text-lg">
+                    Explore Directory
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <svg class="h-8 w-8 text-white" viewBox="0 0 40 40" fill="currentColor">
+                            <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 20h16M20 12v16" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="15" cy="15" r="2" fill="currentColor"/>
+                            <circle cx="25" cy="25" r="2" fill="currentColor"/>
+                        </svg>
+                        <span class="ml-3 text-xl font-bold">ConnectHub Pro</span>
+                    </div>
+                    <p class="text-gray-300 mb-4 max-w-md">The neighborhood square of professional networking. Building authentic connections between local businesses and professionals.</p>
+                    <div class="flex space-x-4">
+                        <a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-custom">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                        </a>
+                        <a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-custom">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-custom">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="homepage.html" class="text-gray-300 hover:text-white transition-custom">Home</a></li>
+                        <li><a href="business_directory.html" class="text-gray-300 hover:text-white transition-custom">Business Directory</a></li>
+                        <li><a href="professional_network.html" class="text-gray-300 hover:text-white transition-custom">Professional Network</a></li>
+                        <li><a href="community_dashboard.html" class="text-gray-300 hover:text-white transition-custom">Community</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Support -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-custom">Help Center</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-custom">Privacy Policy</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-custom">Terms of Service</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-custom">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-primary-700 mt-8 pt-8 text-center">
+                <p class="text-gray-300">&copy; 2025 ConnectHub Pro. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading states to buttons
+        document.querySelectorAll('button, .btn-primary, .btn-secondary').forEach(button => {
+            button.addEventListener('click', function() {
+                if (!this.href) {
+                    this.style.opacity = '0.7';
+                    setTimeout(() => {
+                        this.style.opacity = '1';
+                    }, 300);
+                }
+            });
+        });
+    </script>
+    
+    <!-- Main JavaScript -->
+    <script src="../js/main.js"></script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

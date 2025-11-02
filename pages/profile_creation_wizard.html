@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Profile - ConnectHub Pro</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fconnecthub1138back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.9"></script>
+  <script type="module" src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  </head>
+<body class="bg-background">
+    <!-- Navigation Header -->
+    <nav class="bg-white shadow-custom-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <svg class="h-10 w-10 text-primary" viewBox="0 0 40 40" fill="currentColor">
+                        <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 20h16M20 12v16" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="15" cy="15" r="2" fill="currentColor"/>
+                        <circle cx="25" cy="25" r="2" fill="currentColor"/>
+                    </svg>
+                    <span class="ml-3 text-xl font-bold text-primary">ConnectHub Pro</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="homepage.html" class="text-text-secondary hover:text-primary transition-custom">Home</a>
+                    <a href="business_directory.html" class="text-text-secondary hover:text-primary transition-custom">Businesses</a>
+                    <a href="professional_network.html" class="text-text-secondary hover:text-primary transition-custom">Professionals</a>
+                    <a href="community_dashboard.html" class="text-text-secondary hover:text-primary transition-custom">My Dashboard</a>
+                    <a href="member_profile_pages.html" class="text-text-secondary hover:text-primary transition-custom">Community</a>
+                </div>
+                
+                <!-- Back to Home -->
+                <div class="hidden md:block">
+                    <a href="homepage.html" class="text-primary font-semibold hover:text-primary-600 transition-custom">← Back to Home</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2" id="mobile-menu-btn">
+                    <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-border">
+                    <a href="homepage.html" class="block px-3 py-2 text-text-secondary hover:text-primary">Home</a>
+                    <a href="business_directory.html" class="block px-3 py-2 text-text-secondary hover:text-primary">Businesses</a>
+                    <a href="professional_network.html" class="block px-3 py-2 text-text-secondary hover:text-primary">Professionals</a>
+                    <a href="community_dashboard.html" class="block px-3 py-2 text-text-secondary hover:text-primary">My Dashboard</a>
+                    <a href="member_profile_pages.html" class="block px-3 py-2 text-text-secondary hover:text-primary">Community</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Type Selection -->
+    <section class="py-12 bg-gradient-to-br from-primary-50 to-accent-50" id="profile-type-section">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold text-primary mb-4">Create Your Profile</h1>
+                <p class="text-xl text-text-secondary">Choose your profile type to get started with ConnectHub Pro</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Business Profile Option -->
+                <div class="card hover:shadow-custom-lg transition-all duration-300 cursor-pointer group" id="business-option">
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary-200 transition-colors">
+                            <svg class="w-10 h-10 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm2 6a2 2 0 114 0 2 2 0 01-4 0zm8 0a2 2 0 114 0 2 2 0 01-4 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-primary mb-4">Business Owner</h3>
+                        <p class="text-text-secondary mb-6">Create a compelling business listing to showcase your services and connect with local professionals.</p>
+                        <ul class="text-left space-y-2 mb-8">
+                            <li class="flex items-center text-text-secondary">
+                                <svg class="w-4 h-4 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                Business listing with photos
+                            </li>
+                            <li class="flex items-center text-text-secondary">
+                                <svg class="w-4 h-4 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                Service descriptions
+                            </li>
+                            <li class="flex items-center text-text-secondary">
+                                <svg class="w-4 h-4 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                Connect with professionals
+                            </li>
+                            <li class="flex items-center text-text-secondary">
+                                <svg class="w-4 h-4 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                Customer reviews & ratings
+                            </li>
+                        </ul>
+                        <button class="btn-primary w-full">Create Business Profile</button>
+                    </div>
+                </div>
+                
+                <!-- Professional Profile Option -->
+                <div class="card hover:shadow-custom-lg transition-all duration-300 cursor-pointer group" id="professional-option">
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-accent-200 transition-colors">
+                            <svg class="w-10 h-10 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-primary mb-4">Professional</h3>
+                        <p class="text-text-secondary mb-6">Showcase your expertise and skills to connect with businesses seeking your professional services.</p>
+                        <ul class="text-left space-y-2 mb-8">
+                            <li class="flex items-center text-text-secondary">
+                                <svg class="w-4 h-4 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                Skills & expertise showcase
+                            </li>
+                            <li class="flex items-center text-text-secondary">
+                                <svg class="w-4 h-4 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                LinkedIn integration
+                            </li>
+                            <li class="flex items-center text-text-secondary">
+                                <svg class="w-4 h-4 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                Collaboration opportunities
+                            </li>
+                            <li class="flex items-center text-text-secondary">
+                                <svg class="w-4 h-4 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                Professional endorsements
+                            </li>
+                        </ul>
+                        <button class="btn-accent w-full">Create Professional Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Profile Wizard -->
+    <section class="py-12 bg-white hidden" id="business-wizard">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Progress Bar -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-primary">Business Profile Setup</h2>
+                    <span class="text-sm text-text-secondary">Step <span id="business-current-step">1</span> of 5</span>
+                </div>
+                <div class="w-full bg-border rounded-full h-2">
+                    <div class="bg-primary h-2 rounded-full transition-all duration-300" id="business-progress" style="width: 20%"></div>
+                </div>
+                <div class="flex justify-between mt-2 text-xs text-text-secondary">
+                    <span>Authentication</span>
+                    <span>Basic Info</span>
+                    <span>Services</span>
+                    <span>Photos</span>
+                    <span>Review</span>
+                </div>
+            </div>
+
+            <!-- Step 1: Authentication -->
+            <div class="wizard-step" id="business-step-1">
+                <div class="card max-w-2xl mx-auto">
+                    <div class="text-center mb-8">
+                        <h3 class="text-xl font-semibold text-primary mb-2">Sign in to Continue</h3>
+                        <p class="text-text-secondary">Connect your account to create your business profile</p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <button class="w-full flex items-center justify-center px-6 py-3 border border-border rounded-lg hover:bg-surface transition-custom">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1b2994905-1761989128069.png" 
+                                 alt="Google logo for authentication" 
+                                 class="w-5 h-5 mr-3"
+                                 onerror="this.src='https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=2'; this.onerror=null;">
+                            Continue with Google
+                        </button>
+                        <button class="w-full flex items-center justify-center px-6 py-3 border border-border rounded-lg hover:bg-surface transition-custom">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_11e578d5d-1761989131673.png" 
+                                 alt="Microsoft Live logo for authentication" 
+                                 class="w-5 h-5 mr-3"
+                                 onerror="this.src='https://images.unsplash.com/photo-1633419461186-7d40a38105ec?q=80&w=100&auto=format&fit=crop'; this.onerror=null;">
+                            Continue with Microsoft Live
+                        </button>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <button class="btn-primary" onclick="nextBusinessStep()">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Basic Information -->
+            <div class="wizard-step hidden" id="business-step-2">
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-primary mb-6">Business Information</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Business Name *</label>
+                            <input type="text" class="input-field" placeholder="Enter your business name" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Business Category *</label>
+                            <select class="input-field" required>
+                                <option value="">Select category</option>
+                                <option value="technology">Technology</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="consulting">Consulting</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="finance">Finance</option>
+                                <option value="retail">Retail</option>
+                                <option value="food-beverage">Food & Beverage</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-text-primary mb-2">Business Description *</label>
+                            <textarea class="input-field h-32" placeholder="Describe your business and what makes it unique..." required></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Phone Number *</label>
+                            <input type="tel" class="input-field" placeholder="(555) 123-4567" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Email Address *</label>
+                            <input type="email" class="input-field" placeholder="business@example.com" required>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-text-primary mb-2">Business Address</label>
+                            <input type="text" class="input-field" placeholder="123 Main St, City, State 12345">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Website</label>
+                            <input type="url" class="input-field" placeholder="https://www.yourbusiness.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Founded Year</label>
+                            <input type="number" class="input-field" placeholder="2020" min="1900" max="2025">
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between mt-8">
+                        <button class="px-6 py-3 border border-border rounded-lg hover:bg-surface transition-custom" onclick="prevBusinessStep()">Previous</button>
+                        <button class="btn-primary" onclick="nextBusinessStep()">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Services & Expertise -->
+            <div class="wizard-step hidden" id="business-step-3">
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-primary mb-6">Services & Expertise</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Primary Services *</label>
+                            <textarea class="input-field h-24" placeholder="List your main services or products..." required></textarea>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Specializations</label>
+                            <div class="grid md:grid-cols-3 gap-3">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" value="web-design">
+                                    <span class="text-sm">Web Design</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" value="seo">
+                                    <span class="text-sm">SEO</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" value="social-media">
+                                    <span class="text-sm">Social Media</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" value="consulting">
+                                    <span class="text-sm">Consulting</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" value="photography">
+                                    <span class="text-sm">Photography</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" value="content-writing">
+                                    <span class="text-sm">Content Writing</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-text-primary mb-2">Target Audience</label>
+                                <select class="input-field">
+                                    <option value="">Select target audience</option>
+                                    <option value="small-business">Small Businesses</option>
+                                    <option value="enterprise">Enterprise</option>
+                                    <option value="individuals">Individuals</option>
+                                    <option value="nonprofits">Non-profits</option>
+                                    <option value="all">All of the above</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-text-primary mb-2">Service Area</label>
+                                <select class="input-field">
+                                    <option value="">Select service area</option>
+                                    <option value="local">Local (within 25 miles)</option>
+                                    <option value="regional">Regional (within state)</option>
+                                    <option value="national">National</option>
+                                    <option value="international">International</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Looking to Connect With</label>
+                            <div class="grid md:grid-cols-2 gap-3">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" value="freelancers">
+                                    <span class="text-sm">Freelancers</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" value="consultants">
+                                    <span class="text-sm">Consultants</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" value="agencies">
+                                    <span class="text-sm">Other Agencies</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" value="suppliers">
+                                    <span class="text-sm">Suppliers</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between mt-8">
+                        <button class="px-6 py-3 border border-border rounded-lg hover:bg-surface transition-custom" onclick="prevBusinessStep()">Previous</button>
+                        <button class="btn-primary" onclick="nextBusinessStep()">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Photos & Media -->
+            <div class="wizard-step hidden" id="business-step-4">
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-primary mb-6">Photos & Media</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Business Logo -->
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Business Logo</label>
+                            <div class="border-2 border-dashed border-border rounded-lg p-8 text-center hover:border-primary transition-custom cursor-pointer" id="logo-upload">
+                                <svg class="w-12 h-12 text-text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                </svg>
+                                <p class="text-text-secondary">Click to upload your business logo</p>
+                                <p class="text-sm text-text-secondary mt-1">PNG, JPG up to 5MB</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Business Photos -->
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Business Photos</label>
+                            <div class="grid md:grid-cols-3 gap-4">
+                                <div class="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-primary transition-custom cursor-pointer">
+                                    <svg class="w-8 h-8 text-text-secondary mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                    </svg>
+                                    <p class="text-sm text-text-secondary">Add Photo</p>
+                                </div>
+                                <div class="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-primary transition-custom cursor-pointer">
+                                    <svg class="w-8 h-8 text-text-secondary mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                    </svg>
+                                    <p class="text-sm text-text-secondary">Add Photo</p>
+                                </div>
+                                <div class="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-primary transition-custom cursor-pointer">
+                                    <svg class="w-8 h-8 text-text-secondary mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                    </svg>
+                                    <p class="text-sm text-text-secondary">Add Photo</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-text-secondary mt-2">Add photos of your workspace, team, or products (up to 10 photos)</p>
+                        </div>
+                        
+                        <!-- Social Media Links -->
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-4">Social Media Links (Optional)</label>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <svg class="w-5 h-5 text-blue-600 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                                    </svg>
+                                    <input type="url" class="input-field" placeholder="https://twitter.com/yourbusiness">
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-5 h-5 text-blue-700 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                    </svg>
+                                    <input type="url" class="input-field" placeholder="https://linkedin.com/company/yourbusiness">
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-5 h-5 text-pink-600 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"/>
+                                    </svg>
+                                    <input type="url" class="input-field" placeholder="https://instagram.com/yourbusiness">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between mt-8">
+                        <button class="px-6 py-3 border border-border rounded-lg hover:bg-surface transition-custom" onclick="prevBusinessStep()">Previous</button>
+                        <button class="btn-primary" onclick="nextBusinessStep()">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Review & Publish -->
+            <div class="wizard-step hidden" id="business-step-5">
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-primary mb-6">Review Your Profile</h3>
+                    
+                    <div class="bg-surface rounded-lg p-6 mb-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-16 h-16 bg-primary-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm2 6a2 2 0 114 0 2 2 0 01-4 0zm8 0a2 2 0 114 0 2 2 0 01-4 0z"/>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-lg font-semibold text-primary mb-2">Your Business Name</h4>
+                                <p class="text-text-secondary mb-3">Technology • Founded 2020</p>
+                                <p class="text-text-secondary text-sm">Your business description will appear here...</p>
+                                <div class="flex items-center mt-3 space-x-4">
+                                    <span class="text-sm text-text-secondary">📧 business@example.com</span>
+                                    <span class="text-sm text-text-secondary">📞 (555) 123-4567</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Profile Completeness -->
+                    <div class="bg-success-50 border border-success-100 rounded-lg p-4 mb-6">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span class="text-success font-medium">Profile 95% Complete</span>
+                        </div>
+                        <p class="text-success text-sm mt-1">Great! Your profile is almost ready to publish.</p>
+                    </div>
+                    
+                    <!-- Terms and Privacy -->
+                    <div class="border border-border rounded-lg p-4 mb-6">
+                        <label class="flex items-start">
+                            <input type="checkbox" class="mt-1 mr-3" required>
+                            <span class="text-sm text-text-secondary">
+                                I agree to the <a href="javascript:void(0)" class="text-primary hover:underline">Terms of Service</a> and 
+                                <a href="javascript:void(0)" class="text-primary hover:underline">Privacy Policy</a>. 
+                                I understand that my business information will be publicly visible to ConnectHub Pro members.
+                            </span>
+                        </label>
+                    </div>
+                    
+                    <div class="flex justify-between">
+                        <button class="px-6 py-3 border border-border rounded-lg hover:bg-surface transition-custom" onclick="prevBusinessStep()">Previous</button>
+                        <div class="space-x-3">
+                            <button class="px-6 py-3 border border-primary text-primary rounded-lg hover:bg-primary-50 transition-custom">Save as Draft</button>
+                            <button class="btn-primary" onclick="publishBusinessProfile()">Publish Profile</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Profile Wizard -->
+    <section class="py-12 bg-white hidden" id="professional-wizard">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Progress Bar -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-primary">Professional Profile Setup</h2>
+                    <span class="text-sm text-text-secondary">Step <span id="professional-current-step">1</span> of 5</span>
+                </div>
+                <div class="w-full bg-border rounded-full h-2">
+                    <div class="bg-accent h-2 rounded-full transition-all duration-300" id="professional-progress" style="width: 20%"></div>
+                </div>
+                <div class="flex justify-between mt-2 text-xs text-text-secondary">
+                    <span>Authentication</span>
+                    <span>Basic Info</span>
+                    <span>Skills</span>
+                    <span>Experience</span>
+                    <span>Review</span>
+                </div>
+            </div>
+
+            <!-- Step 1: Authentication -->
+            <div class="wizard-step" id="professional-step-1">
+                <div class="card max-w-2xl mx-auto">
+                    <div class="text-center mb-8">
+                        <h3 class="text-xl font-semibold text-primary mb-2">Sign in to Continue</h3>
+                        <p class="text-text-secondary">Connect your account to create your professional profile</p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <button class="w-full flex items-center justify-center px-6 py-3 border border-border rounded-lg hover:bg-surface transition-custom">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_132a4fd95-1761989128109.png" 
+                                 alt="Google logo for authentication" 
+                                 class="w-5 h-5 mr-3"
+                                 onerror="this.src='https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=2'; this.onerror=null;">
+                            Continue with Google
+                        </button>
+                        <button class="w-full flex items-center justify-center px-6 py-3 border border-border rounded-lg hover:bg-surface transition-custom">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1e921b346-1761989128967.png" 
+                                 alt="Microsoft Live logo for authentication" 
+                                 class="w-5 h-5 mr-3"
+                                 onerror="this.src='https://images.unsplash.com/photo-1633419461186-7d40a38105ec?q=80&w=100&auto=format&fit=crop'; this.onerror=null;">
+                            Continue with Microsoft Live
+                        </button>
+                        <button class="w-full flex items-center justify-center px-6 py-3 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-custom">
+                            <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                            Import from LinkedIn
+                        </button>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <button class="btn-accent" onclick="nextProfessionalStep()">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Basic Information -->
+            <div class="wizard-step hidden" id="professional-step-2">
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-primary mb-6">Professional Information</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">First Name *</label>
+                            <input type="text" class="input-field" placeholder="John" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Last Name *</label>
+                            <input type="text" class="input-field" placeholder="Doe" required>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-text-primary mb-2">Professional Title *</label>
+                            <input type="text" class="input-field" placeholder="e.g., Senior UX Designer, Marketing Consultant" required>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-text-primary mb-2">Professional Summary *</label>
+                            <textarea class="input-field h-32" placeholder="Describe your professional background, expertise, and what you're passionate about..." required></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Email Address *</label>
+                            <input type="email" class="input-field" placeholder="john@example.com" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Phone Number</label>
+                            <input type="tel" class="input-field" placeholder="(555) 123-4567">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Location</label>
+                            <input type="text" class="input-field" placeholder="City, State">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Years of Experience</label>
+                            <select class="input-field">
+                                <option value="">Select experience</option>
+                                <option value="0-2">0-2 years</option>
+                                <option value="3-5">3-5 years</option>
+                                <option value="6-10">6-10 years</option>
+                                <option value="11-15">11-15 years</option>
+                                <option value="15+">15+ years</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-text-primary mb-2">Profile Photo</label>
+                            <div class="flex items-center space-x-4">
+                                <div class="w-20 h-20 bg-surface rounded-full flex items-center justify-center border-2 border-dashed border-border">
+                                    <svg class="w-8 h-8 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <button class="px-4 py-2 border border-border rounded-lg hover:bg-surface transition-custom">Upload Photo</button>
+                                    <p class="text-sm text-text-secondary mt-1">JPG, PNG up to 5MB</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between mt-8">
+                        <button class="px-6 py-3 border border-border rounded-lg hover:bg-surface transition-custom" onclick="prevProfessionalStep()">Previous</button>
+                        <button class="btn-accent" onclick="nextProfessionalStep()">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Skills & Expertise -->
+            <div class="wizard-step hidden" id="professional-step-3">
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-primary mb-6">Skills & Expertise</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Primary Skills *</label>
+                            <div class="grid md:grid-cols-3 gap-3">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" value="web-design">
+                                    <span class="text-sm">Web Design</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" value="ux-ui">
+                                    <span class="text-sm">UX/UI Design</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" value="frontend">
+                                    <span class="text-sm">Frontend Development</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" value="backend">
+                                    <span class="text-sm">Backend Development</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" value="marketing">
+                                    <span class="text-sm">Digital Marketing</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" value="seo">
+                                    <span class="text-sm">SEO</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" value="content">
+                                    <span class="text-sm">Content Writing</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" value="photography">
+                                    <span class="text-sm">Photography</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" value="consulting">
+                                    <span class="text-sm">Business Consulting</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Custom Skills</label>
+                            <input type="text" class="input-field" placeholder="Add any additional skills separated by commas">
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-text-primary mb-2">Industry Focus</label>
+                                <select class="input-field">
+                                    <option value="">Select industry</option>
+                                    <option value="technology">Technology</option>
+                                    <option value="healthcare">Healthcare</option>
+                                    <option value="finance">Finance</option>
+                                    <option value="education">Education</option>
+                                    <option value="retail">Retail</option>
+                                    <option value="manufacturing">Manufacturing</option>
+                                    <option value="nonprofit">Non-profit</option>
+                                    <option value="all">All Industries</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-text-primary mb-2">Availability</label>
+                                <select class="input-field">
+                                    <option value="">Select availability</option>
+                                    <option value="full-time">Available Full-time</option>
+                                    <option value="part-time">Available Part-time</option>
+                                    <option value="project">Project-based Only</option>
+                                    <option value="consulting">Consulting Only</option>
+                                    <option value="not-available">Not Currently Available</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Collaboration Preferences</label>
+                            <div class="grid md:grid-cols-2 gap-3">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" value="remote">
+                                    <span class="text-sm">Remote Work</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" value="onsite">
+                                    <span class="text-sm">On-site Work</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" value="hybrid">
+                                    <span class="text-sm">Hybrid</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" value="travel">
+                                    <span class="text-sm">Willing to Travel</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between mt-8">
+                        <button class="px-6 py-3 border border-border rounded-lg hover:bg-surface transition-custom" onclick="prevProfessionalStep()">Previous</button>
+                        <button class="btn-accent" onclick="nextProfessionalStep()">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Experience & Portfolio -->
+            <div class="wizard-step hidden" id="professional-step-4">
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-primary mb-6">Experience & Portfolio</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Current/Recent Position</label>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <input type="text" class="input-field" placeholder="Job Title">
+                                <input type="text" class="input-field" placeholder="Company Name">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Key Achievements</label>
+                            <textarea class="input-field h-24" placeholder="Describe your key professional achievements and notable projects..."></textarea>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Education</label>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <input type="text" class="input-field" placeholder="Degree/Certification">
+                                <input type="text" class="input-field" placeholder="Institution">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Portfolio/Work Samples</label>
+                            <div class="space-y-3">
+                                <input type="url" class="input-field" placeholder="Portfolio Website URL">
+                                <input type="url" class="input-field" placeholder="GitHub Profile (for developers)">
+                                <input type="url" class="input-field" placeholder="Behance/Dribbble (for designers)">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Professional References</label>
+                            <div class="space-y-4">
+                                <div class="grid md:grid-cols-3 gap-4">
+                                    <input type="text" class="input-field" placeholder="Reference Name">
+                                    <input type="text" class="input-field" placeholder="Title/Company">
+                                    <input type="email" class="input-field" placeholder="Email">
+                                </div>
+                                <div class="grid md:grid-cols-3 gap-4">
+                                    <input type="text" class="input-field" placeholder="Reference Name">
+                                    <input type="text" class="input-field" placeholder="Title/Company">
+                                    <input type="email" class="input-field" placeholder="Email">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Hourly Rate (Optional)</label>
+                            <div class="flex items-center">
+                                <span class="text-text-secondary mr-2">$</span>
+                                <input type="number" class="input-field w-32" placeholder="75">
+                                <span class="text-text-secondary ml-2">per hour</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between mt-8">
+                        <button class="px-6 py-3 border border-border rounded-lg hover:bg-surface transition-custom" onclick="prevProfessionalStep()">Previous</button>
+                        <button class="btn-accent" onclick="nextProfessionalStep()">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Review & Publish -->
+            <div class="wizard-step hidden" id="professional-step-5">
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-primary mb-6">Review Your Profile</h3>
+                    
+                    <div class="bg-surface rounded-lg p-6 mb-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-16 h-16 bg-accent-100 rounded-full flex items-center justify-center">
+                                <svg class="w-8 h-8 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-lg font-semibold text-primary mb-2">John Doe</h4>
+                                <p class="text-accent font-medium mb-2">Senior UX Designer</p>
+                                <p class="text-text-secondary text-sm mb-3">Your professional summary will appear here...</p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-primary-100 text-primary text-xs rounded">UX Design</span>
+                                    <span class="px-2 py-1 bg-primary-100 text-primary text-xs rounded">Figma</span>
+                                    <span class="px-2 py-1 bg-primary-100 text-primary text-xs rounded">Prototyping</span>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <span class="text-sm text-text-secondary">📧 john@example.com</span>
+                                    <span class="text-sm text-text-secondary">📍 City, State</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Profile Completeness -->
+                    <div class="bg-success-50 border border-success-100 rounded-lg p-4 mb-6">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span class="text-success font-medium">Profile 90% Complete</span>
+                        </div>
+                        <p class="text-success text-sm mt-1">Excellent! Your profile is ready to attract opportunities.</p>
+                    </div>
+                    
+                    <!-- Terms and Privacy -->
+                    <div class="border border-border rounded-lg p-4 mb-6">
+                        <label class="flex items-start">
+                            <input type="checkbox" class="mt-1 mr-3" required>
+                            <span class="text-sm text-text-secondary">
+                                I agree to the <a href="javascript:void(0)" class="text-primary hover:underline">Terms of Service</a> and 
+                                <a href="javascript:void(0)" class="text-primary hover:underline">Privacy Policy</a>. 
+                                I understand that my professional information will be visible to ConnectHub Pro members and potential collaborators.
+                            </span>
+                        </label>
+                    </div>
+                    
+                    <div class="flex justify-between">
+                        <button class="px-6 py-3 border border-border rounded-lg hover:bg-surface transition-custom" onclick="prevProfessionalStep()">Previous</button>
+                        <div class="space-x-3">
+                            <button class="px-6 py-3 border border-accent text-accent rounded-lg hover:bg-accent-50 transition-custom">Save as Draft</button>
+                            <button class="btn-accent" onclick="publishProfessionalProfile()">Publish Profile</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50" id="success-modal">
+        <div class="bg-white rounded-2xl p-8 max-w-md mx-4 text-center">
+            <div class="w-16 h-16 bg-success-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-success" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-primary mb-2">Profile Created Successfully!</h3>
+            <p class="text-text-secondary mb-6">Welcome to ConnectHub Pro! Your profile is now live and ready to connect with the community.</p>
+            <div class="space-y-3">
+                <a href="community_dashboard.html" class="btn-primary w-full block">Go to Dashboard</a>
+                <a href="member_profile_pages.html" class="text-primary hover:text-primary-600 transition-custom">View My Profile</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-primary-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <svg class="h-8 w-8 text-white" viewBox="0 0 40 40" fill="currentColor">
+                            <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 20h16M20 12v16" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="15" cy="15" r="2" fill="currentColor"/>
+                            <circle cx="25" cy="25" r="2" fill="currentColor"/>
+                        </svg>
+                        <span class="ml-3 text-xl font-bold">ConnectHub Pro</span>
+                    </div>
+                    <p class="text-gray-300 mb-4 max-w-md">The neighborhood square of professional networking. Building authentic connections between local businesses and professionals.</p>
+                    <div class="flex space-x-4">
+                        <a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-custom">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                        </a>
+                        <a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-custom">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-custom">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="homepage.html" class="text-gray-300 hover:text-white transition-custom">Home</a></li>
+                        <li><a href="business_directory.html" class="text-gray-300 hover:text-white transition-custom">Business Directory</a></li>
+                        <li><a href="professional_network.html" class="text-gray-300 hover:text-white transition-custom">Professional Network</a></li>
+                        <li><a href="community_dashboard.html" class="text-gray-300 hover:text-white transition-custom">Community</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Support -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-custom">Help Center</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-custom">Privacy Policy</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-custom">Terms of Service</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-custom">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-primary-700 mt-8 pt-8 text-center">
+                <p class="text-gray-300">&copy; 2025 ConnectHub Pro. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Profile type selection
+        document.getElementById('business-option').addEventListener('click', function() {
+            document.getElementById('profile-type-section').classList.add('hidden');
+            document.getElementById('business-wizard').classList.remove('hidden');
+        });
+
+        document.getElementById('professional-option').addEventListener('click', function() {
+            document.getElementById('profile-type-section').classList.add('hidden');
+            document.getElementById('professional-wizard').classList.remove('hidden');
+        });
+
+        // Business wizard navigation
+        let currentBusinessStep = 1;
+        const totalBusinessSteps = 5;
+
+        function nextBusinessStep() {
+            if (currentBusinessStep < totalBusinessSteps) {
+                document.getElementById(`business-step-${currentBusinessStep}`).classList.add('hidden');
+                currentBusinessStep++;
+                document.getElementById(`business-step-${currentBusinessStep}`).classList.remove('hidden');
+                updateBusinessProgress();
+            }
+        }
+
+        function prevBusinessStep() {
+            if (currentBusinessStep > 1) {
+                document.getElementById(`business-step-${currentBusinessStep}`).classList.add('hidden');
+                currentBusinessStep--;
+                document.getElementById(`business-step-${currentBusinessStep}`).classList.remove('hidden');
+                updateBusinessProgress();
+            }
+        }
+
+        function updateBusinessProgress() {
+            const progress = (currentBusinessStep / totalBusinessSteps) * 100;
+            document.getElementById('business-progress').style.width = `${progress}%`;
+            document.getElementById('business-current-step').textContent = currentBusinessStep;
+        }
+
+        // Professional wizard navigation
+        let currentProfessionalStep = 1;
+        const totalProfessionalSteps = 5;
+
+        function nextProfessionalStep() {
+            if (currentProfessionalStep < totalProfessionalSteps) {
+                document.getElementById(`professional-step-${currentProfessionalStep}`).classList.add('hidden');
+                currentProfessionalStep++;
+                document.getElementById(`professional-step-${currentProfessionalStep}`).classList.remove('hidden');
+                updateProfessionalProgress();
+            }
+        }
+
+        function prevProfessionalStep() {
+            if (currentProfessionalStep > 1) {
+                document.getElementById(`professional-step-${currentProfessionalStep}`).classList.add('hidden');
+                currentProfessionalStep--;
+                document.getElementById(`professional-step-${currentProfessionalStep}`).classList.remove('hidden');
+                updateProfessionalProgress();
+            }
+        }
+
+        function updateProfessionalProgress() {
+            const progress = (currentProfessionalStep / totalProfessionalSteps) * 100;
+            document.getElementById('professional-progress').style.width = `${progress}%`;
+            document.getElementById('professional-current-step').textContent = currentProfessionalStep;
+        }
+
+        // Profile publishing
+        function publishBusinessProfile() {
+            // Simulate profile creation
+            setTimeout(() => {
+                document.getElementById('success-modal').classList.remove('hidden');
+                document.getElementById('success-modal').classList.add('flex');
+            }, 1000);
+        }
+
+        function publishProfessionalProfile() {
+            // Simulate profile creation
+            setTimeout(() => {
+                document.getElementById('success-modal').classList.remove('hidden');
+                document.getElementById('success-modal').classList.add('flex');
+            }, 1000);
+        }
+
+        // Form validation
+        document.querySelectorAll('input[required], textarea[required], select[required]').forEach(field => {
+            field.addEventListener('blur', function() {
+                if (!this.value.trim()) {
+                    this.classList.add('border-error');
+                } else {
+                    this.classList.remove('border-error');
+                }
+            });
+        });
+
+        // Auto-save functionality
+        let autoSaveTimer;
+        document.querySelectorAll('input, textarea, select').forEach(field => {
+            field.addEventListener('input', function() {
+                clearTimeout(autoSaveTimer);
+                autoSaveTimer = setTimeout(() => {
+                    // Simulate auto-save
+                    console.log('Auto-saving profile data...');
+                }, 2000);
+            });
+        });
+
+        // File upload simulation
+        document.querySelectorAll('[id*="upload"], .cursor-pointer').forEach(element => {
+            element.addEventListener('click', function() {
+                if (this.classList.contains('cursor-pointer') || this.id.includes('upload')) {
+                    // Simulate file selection
+                    const input = document.createElement('input');
+                    input.type = 'file';
+                    input.accept = 'image/*';
+                    input.click();
+                }
+            });
+        });
+
+        // URL parameter handling for direct profile type selection
+        const urlParams = new URLSearchParams(window.location.search);
+        const profileType = urlParams.get('type');
+        
+        if (profileType === 'business') {
+            document.getElementById('profile-type-section').classList.add('hidden');
+            document.getElementById('business-wizard').classList.remove('hidden');
+        } else if (profileType === 'professional') {
+            document.getElementById('profile-type-section').classList.add('hidden');
+            document.getElementById('professional-wizard').classList.remove('hidden');
+        }
+    </script>
+    
+    <!-- Main JavaScript -->
+    <script src="../js/main.js"></script>
+    <!-- Profile Wizard specific JavaScript -->
+    <script src="../js/profile-wizard.js"></script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>
