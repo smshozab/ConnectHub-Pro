@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Test - ConnectHub Pro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2D3748;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        button {
+            background: #4299e1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #3182ce;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+        }
+        .success {
+            background: #c6f6d5;
+            color: #22543d;
+            border: 1px solid #9ae6b4;
+        }
+        .error {
+            background: #fed7d7;
+            color: #742a2a;
+            border: 1px solid #fc8181;
+        }
+        .info {
+            background: #bee3f8;
+            color: #2c5282;
+            border: 1px solid #90cdf4;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        label {
+            font-weight: bold;
+            color: #2D3748;
+        }
+        .status {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status.online {
+            background: #48bb78;
+        }
+        .status.offline {
+            background: #f56565;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 ConnectHub Pro - Authentication Test</h1>
+        
+        <div class="test-section">
+            <h3><span class="status" id="backend-status"></span>Backend Status</h3>
+            <button onclick="testBackend()">Test Backend Connection</button>
+            <div id="backend-result" class="result" style="display:none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>🔐 Test Login</h3>
+            <label>Email:</label>
+            <input type="email" id="test-email" value="john@brewconnect.com">
+            
+            <label>Password:</label>
+            <input type="password" id="test-password" value="password123">
+            
+            <button onclick="testLogin()">Test Login</button>
+            <button onclick="testLoginWithFetch()">Test with Fetch (Direct)</button>
+            <div id="login-result" class="result" style="display:none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>📝 Test Registration</h3>
+            <label>First Name:</label>
+            <input type="text" id="test-firstName" value="Test">
+            
+            <label>Last Name:</label>
+            <input type="text" id="test-lastName" value="User">
+            
+            <label>Email:</label>
+            <input type="email" id="test-reg-email" value="testuser@example.com">
+            
+            <label>Password:</label>
+            <input type="password" id="test-reg-password" value="password123">
+            
+            <label>User Type:</label>
+            <select id="test-userType" style="width: 100%; padding: 10px; margin: 5px 0 15px 0; border: 1px solid #ddd; border-radius: 5px;">
+                <option value="business">Business</option>
+                <option value="professional">Professional</option>
+            </select>
+            
+            <button onclick="testRegister()">Test Registration</button>
+            <div id="register-result" class="result" style="display:none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>💾 Local Storage</h3>
+            <button onclick="checkLocalStorage()">Check Local Storage</button>
+            <button onclick="clearLocalStorage()">Clear Local Storage</button>
+            <div id="storage-result" class="result" style="display:none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>🌐 CORS Test</h3>
+            <button onclick="testCORS()">Test CORS Configuration</button>
+            <div id="cors-result" class="result" style="display:none;"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:3000/api';
+
+        // Test backend connection
+        async function testBackend() {
+            const resultDiv = document.getElementById('backend-result');
+            const statusDot = document.getElementById('backend-status');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result info';
+            resultDiv.textContent = 'Testing backend connection...';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/health`);
+                const data = await response.json();
+                
+                if (data.status === 'OK') {
+                    resultDiv.className = 'result success';
+                    resultDiv.textContent = `✅ Backend is online!\n\n${JSON.stringify(data, null, 2)}`;
+                    statusDot.className = 'status online';
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.textContent = `❌ Backend responded but status is not OK:\n\n${JSON.stringify(data, null, 2)}`;
+                    statusDot.className = 'status offline';
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ Backend connection failed:\n\n${error.message}`;
+                statusDot.className = 'status offline';
+            }
+        }
+
+        // Test login with auth.js
+        async function testLogin() {
+            const resultDiv = document.getElementById('login-result');
+            const email = document.getElementById('test-email').value;
+            const password = document.getElementById('test-password').value;
+            
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result info';
+            resultDiv.textContent = 'Testing login with auth.js...';
+            
+            // Check if auth object exists
+            if (typeof auth === 'undefined') {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = '❌ ERROR: auth object is not defined!\n\nMake sure auth.js is loaded.';
+                return;
+            }
+            
+            try {
+                const result = await auth.login(email, password);
+                
+                if (result.success) {
+                    resultDiv.className = 'result success';
+                    resultDiv.textContent = `✅ Login successful!\n\nUser: ${result.user.firstName} ${result.user.lastName}\nEmail: ${result.user.email}\nType: ${result.user.userType}`;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.textContent = `❌ Login failed:\n\n${result.message}`;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ Login error:\n\n${error.message}\n\n${error.stack}`;
+            }
+        }
+
+        // Test login with direct fetch
+        async function testLoginWithFetch() {
+            const resultDiv = document.getElementById('login-result');
+            const email = document.getElementById('test-email').value;
+            const password = document.getElementById('test-password').value;
+            
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result info';
+            resultDiv.textContent = 'Testing login with direct fetch...';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    resultDiv.className = 'result success';
+                    resultDiv.textContent = `✅ Login successful!\n\n${JSON.stringify(data, null, 2)}`;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.textContent = `❌ Login failed:\n\n${JSON.stringify(data, null, 2)}`;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ Fetch error:\n\n${error.message}`;
+            }
+        }
+
+        // Test registration
+        async function testRegister() {
+            const resultDiv = document.getElementById('register-result');
+            const formData = {
+                firstName: document.getElementById('test-firstName').value,
+                lastName: document.getElementById('test-lastName').value,
+                email: document.getElementById('test-reg-email').value,
+                password: document.getElementById('test-reg-password').value,
+                userType: document.getElementById('test-userType').value
+            };
+            
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result info';
+            resultDiv.textContent = 'Testing registration...';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    resultDiv.className = 'result success';
+                    resultDiv.textContent = `✅ Registration successful!\n\n${JSON.stringify(data, null, 2)}`;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.textContent = `❌ Registration failed:\n\n${JSON.stringify(data, null, 2)}`;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ Registration error:\n\n${error.message}`;
+            }
+        }
+
+        // Check local storage
+        function checkLocalStorage() {
+            const resultDiv = document.getElementById('storage-result');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result info';
+            
+            const token = localStorage.getItem('auth_token');
+            const user = localStorage.getItem('user_data');
+            
+            if (token && user) {
+                resultDiv.textContent = `✅ Auth data found in localStorage:\n\nToken: ${token.substring(0, 50)}...\n\nUser: ${user}`;
+            } else if (token) {
+                resultDiv.textContent = `⚠️ Token found but no user data:\n\nToken: ${token.substring(0, 50)}...`;
+            } else {
+                resultDiv.textContent = '❌ No auth data in localStorage';
+            }
+        }
+
+        // Clear local storage
+        function clearLocalStorage() {
+            localStorage.removeItem('auth_token');
+            localStorage.removeItem('user_data');
+            
+            const resultDiv = document.getElementById('storage-result');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result success';
+            resultDiv.textContent = '✅ Local storage cleared!';
+        }
+
+        // Test CORS
+        async function testCORS() {
+            const resultDiv = document.getElementById('cors-result');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result info';
+            resultDiv.textContent = 'Testing CORS configuration...';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/health`, {
+                    method: 'GET',
+                    headers: {
+                        'Origin': window.location.origin
+                    }
+                });
+                
+                const accessControlOrigin = response.headers.get('Access-Control-Allow-Origin');
+                
+                if (accessControlOrigin) {
+                    resultDiv.className = 'result success';
+                    resultDiv.textContent = `✅ CORS is configured!\n\nAllowed Origin: ${accessControlOrigin}\nCurrent Origin: ${window.location.origin}`;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.textContent = `⚠️ No CORS header found\n\nThis might cause authentication issues`;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ CORS test failed:\n\n${error.message}`;
+            }
+        }
+
+        // Auto-test backend on page load
+        window.addEventListener('load', () => {
+            testBackend();
+        });
+    </script>
+
+    <!-- Load auth.js for testing -->
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
+

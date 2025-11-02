@@ -13,13 +13,18 @@ A modern, responsive professional networking platform built with HTML, Tailwind 
 - **Profile Creation Wizard** - Multi-step forms with validation
 - **Form Validation** - Real-time validation with user-friendly error messages
 - **Modern UI/UX** - Clean, professional design with smooth animations
+- **Backend API** - RESTful API with Express.js and SQLite
+- **User Authentication** - JWT-based authentication with bcrypt password hashing
+- **Database Integration** - SQLite database with user, business, and professional profiles
+- **Security** - Helmet, CORS, rate limiting, and input validation
 
 ### 🔄 Coming Soon
-- User authentication and profiles
 - Real-time messaging system
 - Event management
 - Advanced search algorithms
-- Backend API integration
+- Profile image uploads
+- Review and rating system
+- Advanced filtering and recommendations
 
 ## 📋 Prerequisites
 
@@ -37,35 +42,105 @@ cd connecthub-pro
 
 2. **Install dependencies:**
 ```bash
+# Install frontend dependencies
 npm install
+
+# Install backend dependencies
+cd backend
+npm install
+cd ..
+
+# Install frontend-server dependencies
+cd frontend-server
+npm install
+cd ..
 ```
 
-3. **Build CSS:**
+3. **Configure Backend Environment:**
+Create a `.env` file in the `backend` directory:
+```bash
+cd backend
+# Copy the example below or create manually
+```
+
+Example `.env` file:
+```env
+PORT=3000
+NODE_ENV=development
+FRONTEND_URL=http://localhost:8080
+JWT_SECRET=your-super-secret-jwt-key-change-this
+SESSION_EXPIRE=7d
+```
+
+4. **Build CSS:**
 ```bash
 npm run build:css
 ```
 
-4. **Start development server:**
+5. **Start Servers:**
+
+**Option 1: Use the launcher (Windows)**
 ```bash
+start-connecthub.bat
+```
+
+**Option 2: Manual start**
+```bash
+# Terminal 1 - Backend API
+cd backend
+node minimal-backend.js    # For development with demo users
+# OR
+node server.js            # For production with database
+
+# Terminal 2 - Frontend Server
+cd frontend-server
+node minimal-frontend.js  # For development
+# OR  
+node server.js           # For production
+
+# Terminal 3 - Frontend CSS Development (optional)
 npm run dev
 ```
 
-5. **Open in browser:**
+6. **Open in browser:**
 ```
-http://localhost:8000
+http://localhost:8080/pages/homepage.html
 ```
 
 ## 📁 Project Structure
 
 ```
 ConnectHub/
-├── pages/                          # HTML pages
-│   ├── homepage.html              # Landing page
-│   ├── business_directory.html    # Business listings with search
-│   ├── professional_network.html  # Professional profiles
+├── backend/                       # Backend API server
+│   ├── config/
+│   │   └── database.js           # SQLite database configuration
+│   ├── database/
+│   │   └── connecthub.db         # SQLite database file
+│   ├── middleware/
+│   │   └── auth.js               # Authentication middleware
+│   ├── routes/
+│   │   ├── auth.js               # Authentication routes
+│   │   ├── businesses.js         # Business routes
+│   │   ├── messages.js           # Messaging routes
+│   │   └── profiles.js           # Profile routes
+│   ├── scripts/
+│   │   └── init-database.js      # Database initialization script
+│   ├── minimal-backend.js        # Minimal dev server (in-memory auth)
+│   ├── server.js                 # Production server (database auth)
+│   ├── package.json              # Backend dependencies
+│   └── .env                      # Environment variables (create this!)
+├── frontend-server/              # Frontend static file server
+│   ├── minimal-frontend.js       # Minimal static server
+│   ├── no-auth-server.js         # Dev server without auth
+│   ├── server.js                 # Production frontend server
+│   └── package.json              # Frontend server dependencies
+├── pages/                        # HTML pages
+│   ├── homepage.html             # Landing page
+│   ├── business_directory.html   # Business listings with search
+│   ├── professional_network.html # Professional profiles
 │   ├── profile_creation_wizard.html # Multi-step profile setup
-│   ├── community_dashboard.html   # User dashboard
-│   └── member_profile_pages.html  # Member profiles
+│   ├── community_dashboard.html  # User dashboard
+│   └── member_profile_pages.html # Member profiles
 ├── css/
 │   ├── tailwind.css              # Tailwind source with custom utilities
 │   └── main.css                  # Compiled CSS (auto-generated)
@@ -74,12 +149,53 @@ ConnectHub/
 │   ├── business-directory.js     # Search & filtering logic
 │   └── profile-wizard.js         # Form validation & wizard flow
 ├── public/
-│   └── manifest.json            # PWA manifest
-├── index.html                   # Entry point with auto-redirect
-├── package.json                 # Dependencies & scripts
-├── tailwind.config.js          # Tailwind configuration
-└── README.md                   # This file
+│   └── manifest.json             # PWA manifest
+├── index.html                    # Entry point with auto-redirect
+├── start-connecthub.bat          # Windows launcher with options
+├── start-servers.bat             # Quick server start script
+├── server-status.bat             # Check server status
+├── package.json                  # Frontend dependencies & scripts
+├── tailwind.config.js            # Tailwind configuration
+└── README.md                     # This file
 ```
+
+## 🔌 Backend API
+
+The backend API provides the following endpoints:
+
+### Authentication
+- `POST /api/auth/register` - Register new user
+- `POST /api/auth/login` - User login
+- `GET /api/auth/me` - Get current user profile (requires auth)
+- `POST /api/auth/logout` - Logout user (requires auth)
+- `POST /api/auth/change-password` - Change password (requires auth)
+
+### Profiles
+- `GET /api/profiles` - Get all profiles
+- `GET /api/profiles/:id` - Get specific profile
+- `PUT /api/profiles/:id` - Update profile (requires auth)
+- `DELETE /api/profiles/:id` - Delete profile (requires auth)
+
+### Businesses
+- `GET /api/businesses` - Get all businesses
+- `GET /api/businesses/:id` - Get specific business
+- `POST /api/businesses` - Create business (requires auth)
+- `PUT /api/businesses/:id` - Update business (requires auth)
+- `DELETE /api/businesses/:id` - Delete business (requires auth)
+
+### Messages
+- `GET /api/messages` - Get user messages (requires auth)
+- `POST /api/messages` - Send message (requires auth)
+- `GET /api/messages/:id` - Get specific message (requires auth)
+- `PUT /api/messages/:id/read` - Mark message as read (requires auth)
+
+### Health Check
+- `GET /api/health` - Check API status
+
+### Demo Accounts
+For development and testing:
+- **Business**: john@brewconnect.com / password123
+- **Professional**: alex@example.com / password123
 
 ## 🎨 Styling & Design System
 
@@ -154,11 +270,6 @@ npm run build:css
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 🎯 Roadmap
 
 ### Phase 1 (Current)
@@ -179,14 +290,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] Review system
 - [ ] API integration
 
-## 📞 Support
-
-For support, questions, or feature requests:
-- Create an issue on GitHub
-- Email: support@connecthub-pro.com
-- Documentation: [Wiki](https://github.com/yourusername/connecthub-pro/wiki)
-
----
 
 **ConnectHub Pro** - Building stronger professional communities, one connection at a time.
 
@@ -216,9 +319,5 @@ The app is built with responsive design using Tailwind CSS breakpoints:
 - `xl`: 1280px and up
 - `2xl`: 1536px and up
 
-## 🙏 Acknowledgments
 
-- Built with [Rocket.new](https://rocket.new)
-- Powered by HTML and Tailwind CSS
-
-Built with ❤️ on Rocket.new
+Built with ❤️ by Shozab Mehdi

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS Debug - ConnectHub</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #00ff00;
+        }
+        .container {
+            background: #000;
+            padding: 20px;
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+        }
+        h1 {
+            color: #00ff00;
+            text-align: center;
+            border-bottom: 2px solid #00ff00;
+            padding-bottom: 10px;
+        }
+        button {
+            background: #00ff00;
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 10px 5px;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #00cc00;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #111;
+            border-left: 4px solid #00ff00;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+        }
+        .error {
+            border-left-color: #ff0000;
+            color: #ff0000;
+        }
+        .success {
+            border-left-color: #00ff00;
+            color: #00ff00;
+        }
+        .warning {
+            border-left-color: #ffff00;
+            color: #ffff00;
+        }
+        .info {
+            border-left-color: #00ccff;
+            color: #00ccff;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+        h2 {
+            color: #00ccff;
+            margin-top: 0;
+        }
+        .status-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .online { background: #00ff00; }
+        .offline { background: #ff0000; }
+        .pending { background: #ffff00; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 CORS DEBUGGER</h1>
+        
+        <div class="test-section">
+            <h2><span class="status-dot pending" id="status-dot"></span>Connection Status</h2>
+            <div id="connection-info" class="result info">
+                Current Origin: <span id="current-origin"></span><br>
+                Backend URL: http://localhost:3000<br>
+                Status: <span id="connection-status">Testing...</span>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🧪 Test 1: Direct Fetch to Backend</h2>
+            <button onclick="testDirectFetch()">Run Test</button>
+            <div id="test1-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🧪 Test 2: Check CORS Headers</h2>
+            <button onclick="testCORSHeaders()">Run Test</button>
+            <div id="test2-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🧪 Test 3: Login Request</h2>
+            <button onclick="testLogin()">Run Test</button>
+            <div id="test3-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🧪 Test 4: Preflight Request</h2>
+            <button onclick="testPreflight()">Run Test</button>
+            <div id="test4-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>📊 Browser Console Log</h2>
+            <div id="console-log" class="result info">Open DevTools (F12) to see detailed network activity</div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:3000';
+        
+        // Show current origin
+        document.getElementById('current-origin').textContent = window.location.origin;
+        
+        // Log helper
+        function log(message, type = 'info') {
+            console.log(`[${type.toUpperCase()}]`, message);
+        }
+
+        // Auto test on load
+        window.addEventListener('load', () => {
+            log('Page loaded, testing connection...');
+            testConnection();
+        });
+
+        // Test connection
+        async function testConnection() {
+            const statusDot = document.getElementById('status-dot');
+            const statusText = document.getElementById('connection-status');
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/health`);
+                const data = await response.json();
+                
+                if (data.status === 'OK') {
+                    statusDot.className = 'status-dot online';
+                    statusText.textContent = '✅ ONLINE';
+                    statusText.style.color = '#00ff00';
+                    log('Backend is online!', 'success');
+                } else {
+                    statusDot.className = 'status-dot offline';
+                    statusText.textContent = '❌ ERROR';
+                    statusText.style.color = '#ff0000';
+                    log('Backend responded but status is not OK', 'error');
+                }
+            } catch (error) {
+                statusDot.className = 'status-dot offline';
+                statusText.textContent = '❌ OFFLINE';
+                statusText.style.color = '#ff0000';
+                log(`Backend connection failed: ${error.message}`, 'error');
+            }
+        }
+
+        // Test 1: Direct Fetch
+        async function testDirectFetch() {
+            const resultDiv = document.getElementById('test1-result');
+            resultDiv.className = 'result info';
+            resultDiv.textContent = '⏳ Testing direct fetch to backend...\n';
+            
+            log('TEST 1: Starting direct fetch test');
+            
+            try {
+                const startTime = Date.now();
+                const response = await fetch(`${API_BASE}/api/health`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const endTime = Date.now();
+                const data = await response.json();
+                
+                // Check CORS headers
+                const corsHeader = response.headers.get('Access-Control-Allow-Origin');
+                
+                resultDiv.className = 'result success';
+                resultDiv.textContent = `✅ SUCCESS!\n\n` +
+                    `Response Time: ${endTime - startTime}ms\n` +
+                    `Status: ${response.status} ${response.statusText}\n` +
+                    `CORS Header: ${corsHeader || '❌ NOT FOUND'}\n\n` +
+                    `Response Data:\n${JSON.stringify(data, null, 2)}`;
+                
+                if (!corsHeader) {
+                    resultDiv.className = 'result warning';
+                    resultDiv.textContent += '\n\n⚠️  WARNING: No CORS header found!\n' +
+                        'This is the problem preventing authentication.';
+                }
+                
+                log('TEST 1: Success', 'success');
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ FAILED!\n\n${error.message}\n\nError Type: ${error.name}`;
+                
+                if (error.message.includes('CORS')) {
+                    resultDiv.textContent += '\n\n🚨 CORS ERROR DETECTED!\n' +
+                        'The backend is blocking requests from this origin.';
+                }
+                
+                log(`TEST 1: Failed - ${error.message}`, 'error');
+            }
+        }
+
+        // Test 2: Check CORS Headers
+        async function testCORSHeaders() {
+            const resultDiv = document.getElementById('test2-result');
+            resultDiv.className = 'result info';
+            resultDiv.textContent = '⏳ Checking CORS headers...\n';
+            
+            log('TEST 2: Checking CORS headers');
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/health`);
+                
+                // Get all CORS-related headers
+                const allowOrigin = response.headers.get('Access-Control-Allow-Origin');
+                const allowMethods = response.headers.get('Access-Control-Allow-Methods');
+                const allowHeaders = response.headers.get('Access-Control-Allow-Headers');
+                const allowCredentials = response.headers.get('Access-Control-Allow-Credentials');
+                
+                let result = '📋 CORS Headers Analysis:\n\n';
+                
+                if (allowOrigin) {
+                    result += `✅ Access-Control-Allow-Origin: ${allowOrigin}\n`;
+                    if (allowOrigin === '*' || allowOrigin === window.location.origin) {
+                        result += '   ✅ Origin is allowed\n';
+                    } else {
+                        result += `   ⚠️  Origin mismatch (expected: ${window.location.origin})\n`;
+                    }
+                } else {
+                    result += '❌ Access-Control-Allow-Origin: NOT FOUND\n';
+                    result += '   🚨 THIS IS THE PROBLEM!\n';
+                }
+                
+                result += '\n';
+                result += allowMethods ? `✅ Allow-Methods: ${allowMethods}\n` : '❌ Allow-Methods: NOT FOUND\n';
+                result += allowHeaders ? `✅ Allow-Headers: ${allowHeaders}\n` : '❌ Allow-Headers: NOT FOUND\n';
+                result += allowCredentials ? `✅ Allow-Credentials: ${allowCredentials}\n` : '⚠️  Allow-Credentials: NOT FOUND\n';
+                
+                resultDiv.className = allowOrigin ? 'result success' : 'result error';
+                resultDiv.textContent = result;
+                
+                log('TEST 2: Complete', allowOrigin ? 'success' : 'error');
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ FAILED!\n\n${error.message}`;
+                log(`TEST 2: Failed - ${error.message}`, 'error');
+            }
+        }
+
+        // Test 3: Login
+        async function testLogin() {
+            const resultDiv = document.getElementById('test3-result');
+            resultDiv.className = 'result info';
+            resultDiv.textContent = '⏳ Testing login endpoint...\n';
+            
+            log('TEST 3: Testing login');
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: 'john@brewconnect.com',
+                        password: 'password123'
+                    })
+                });
+                
+                const data = await response.json();
+                const corsHeader = response.headers.get('Access-Control-Allow-Origin');
+                
+                if (data.success) {
+                    resultDiv.className = 'result success';
+                    resultDiv.textContent = `✅ LOGIN SUCCESS!\n\n` +
+                        `User: ${data.data.user.firstName} ${data.data.user.lastName}\n` +
+                        `Email: ${data.data.user.email}\n` +
+                        `Type: ${data.data.user.userType}\n` +
+                        `Token: ${data.data.token.substring(0, 50)}...\n\n` +
+                        `CORS Header: ${corsHeader || '❌ NOT FOUND'}`;
+                    
+                    log('TEST 3: Login successful!', 'success');
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.textContent = `❌ LOGIN FAILED!\n\n${data.message}`;
+                    log(`TEST 3: Login failed - ${data.message}`, 'error');
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ REQUEST FAILED!\n\n${error.message}`;
+                
+                if (error.message.includes('CORS') || error.message.includes('Failed to fetch')) {
+                    resultDiv.textContent += '\n\n🚨 CORS is blocking this request!';
+                }
+                
+                log(`TEST 3: Failed - ${error.message}`, 'error');
+            }
+        }
+
+        // Test 4: Preflight
+        async function testPreflight() {
+            const resultDiv = document.getElementById('test4-result');
+            resultDiv.className = 'result info';
+            resultDiv.textContent = '⏳ Testing OPTIONS preflight request...\n';
+            
+            log('TEST 4: Testing preflight');
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/auth/login`, {
+                    method: 'OPTIONS',
+                    headers: {
+                        'Access-Control-Request-Method': 'POST',
+                        'Access-Control-Request-Headers': 'Content-Type',
+                        'Origin': window.location.origin
+                    }
+                });
+                
+                const allowOrigin = response.headers.get('Access-Control-Allow-Origin');
+                const allowMethods = response.headers.get('Access-Control-Allow-Methods');
+                const allowHeaders = response.headers.get('Access-Control-Allow-Headers');
+                
+                let result = `📋 Preflight Response:\n\n`;
+                result += `Status: ${response.status} ${response.statusText}\n`;
+                result += `Allow-Origin: ${allowOrigin || '❌ NOT FOUND'}\n`;
+                result += `Allow-Methods: ${allowMethods || '❌ NOT FOUND'}\n`;
+                result += `Allow-Headers: ${allowHeaders || '❌ NOT FOUND'}\n`;
+                
+                if (allowOrigin && allowMethods && allowHeaders) {
+                    resultDiv.className = 'result success';
+                    result += '\n✅ Preflight passed! CORS is configured correctly.';
+                } else {
+                    resultDiv.className = 'result error';
+                    result += '\n❌ Preflight failed! CORS is not configured correctly.';
+                }
+                
+                resultDiv.textContent = result;
+                log('TEST 4: Complete', allowOrigin ? 'success' : 'error');
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ FAILED!\n\n${error.message}`;
+                log(`TEST 4: Failed - ${error.message}`, 'error');
+            }
+        }
+    </script>
+</body>
+</html>
+

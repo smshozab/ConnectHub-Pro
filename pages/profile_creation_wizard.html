@@ -7,9 +7,22 @@
     <link rel="stylesheet" href="../css/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fconnecthub1138back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.9"></script>
-  <script type="module" src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
-  </head>
+    <style>
+        /* Emergency fix for wizard display */
+        #business-wizard, #professional-wizard {
+            min-height: 400px;
+        }
+        .wizard-step {
+            min-height: 300px;
+        }
+        .wizard-step.hidden {
+            display: none !important;
+        }
+        .wizard-step:not(.hidden) {
+            display: block !important;
+        }
+    </style>
+</head>
 <body class="bg-background">
     <!-- Navigation Header -->
     <nav class="bg-white shadow-custom-sm sticky top-0 z-50">
@@ -60,6 +73,30 @@
             </div>
         </div>
     </nav>
+
+    <!-- Registration Notice Banner -->
+    <div class="bg-accent-100 border-l-4 border-accent py-4 px-6" id="registration-notice">
+        <div class="max-w-7xl mx-auto flex items-start">
+            <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+            </div>
+            <div class="ml-3 flex-1">
+                <h3 class="text-sm font-semibold text-accent-700">Need to Register?</h3>
+                <p class="mt-1 text-sm text-accent-600">
+                    To create your profile, please <a href="homepage.html" class="font-bold underline hover:text-accent-800">register from the homepage</a> first. Click "Join Now" to create your account with email and password. Social login (Google/Microsoft) is not yet available.
+                </p>
+            </div>
+            <div class="ml-3">
+                <button onclick="document.getElementById('registration-notice').remove()" class="text-accent-600 hover:text-accent-800">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Profile Type Selection -->
     <section class="py-12 bg-gradient-to-br from-primary-50 to-accent-50" id="profile-type-section">
@@ -183,24 +220,51 @@
                     </div>
                     
                     <div class="space-y-4">
-                        <button class="w-full flex items-center justify-center px-6 py-3 border border-border rounded-lg hover:bg-surface transition-custom">
-                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1b2994905-1761989128069.png" 
-                                 alt="Google logo for authentication" 
-                                 class="w-5 h-5 mr-3"
-                                 onerror="this.src='https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=2'; this.onerror=null;">
-                            Continue with Google
+                        <!-- Quick Auth Buttons -->
+                        <button class="w-full px-6 py-4 bg-primary text-white text-center rounded-lg hover:bg-primary-600 transition-custom font-semibold text-lg open-auth-modal" data-mode="register">
+                            <svg class="inline-block w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+                            </svg>
+                            Create New Account
                         </button>
-                        <button class="w-full flex items-center justify-center px-6 py-3 border border-border rounded-lg hover:bg-surface transition-custom">
-                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_11e578d5d-1761989131673.png" 
-                                 alt="Microsoft Live logo for authentication" 
-                                 class="w-5 h-5 mr-3"
-                                 onerror="this.src='https://images.unsplash.com/photo-1633419461186-7d40a38105ec?q=80&w=100&auto=format&fit=crop'; this.onerror=null;">
-                            Continue with Microsoft Live
+                        
+                        <button class="w-full px-6 py-4 border-2 border-primary text-primary text-center rounded-lg hover:bg-primary-50 transition-custom font-semibold text-lg open-auth-modal" data-mode="login">
+                            <svg class="inline-block w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                            </svg>
+                            Sign In to Existing Account
                         </button>
+                        
+                        <div class="relative my-6">
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="w-full border-t border-border"></div>
+                            </div>
+                            <div class="relative flex justify-center text-sm">
+                                <span class="px-4 bg-white text-text-secondary">Or</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Social Login Notice -->
+                        <div class="p-4 bg-surface rounded-lg border border-border">
+                            <p class="text-sm text-text-secondary text-center mb-3">
+                                <svg class="inline-block w-5 h-5 mr-2 text-warning" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"/>
+                                </svg>
+                                Social login coming soon! 
+                            </p>
+                            <p class="text-xs text-text-secondary text-center">
+                                Google and Microsoft login options will be available in a future update.
+                            </p>
+                        </div>
                     </div>
                     
                     <div class="mt-8 text-center">
-                        <button class="btn-primary" onclick="nextBusinessStep()">Continue</button>
+                        <button class="btn-primary" onclick="nextBusinessStep()">
+                            <svg class="inline-block w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                            </svg>
+                            Continue to Profile Setup
+                        </button>
                     </div>
                 </div>
             </div>
@@ -365,7 +429,7 @@
                     <div class="space-y-6">
                         <!-- Business Logo -->
                         <div>
-                            <label class="block text-sm font-medium text-text-primary mb-2">Business Logo</label>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Business Logo <span class="text-text-secondary font-normal">(Optional)</span></label>
                             <div class="border-2 border-dashed border-border rounded-lg p-8 text-center hover:border-primary transition-custom cursor-pointer" id="logo-upload">
                                 <svg class="w-12 h-12 text-text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
@@ -377,7 +441,7 @@
                         
                         <!-- Business Photos -->
                         <div>
-                            <label class="block text-sm font-medium text-text-primary mb-2">Business Photos</label>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Business Photos <span class="text-text-secondary font-normal">(Optional)</span></label>
                             <div class="grid md:grid-cols-3 gap-4">
                                 <div class="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-primary transition-custom cursor-pointer">
                                     <svg class="w-8 h-8 text-text-secondary mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -523,30 +587,51 @@
                     </div>
                     
                     <div class="space-y-4">
-                        <button class="w-full flex items-center justify-center px-6 py-3 border border-border rounded-lg hover:bg-surface transition-custom">
-                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_132a4fd95-1761989128109.png" 
-                                 alt="Google logo for authentication" 
-                                 class="w-5 h-5 mr-3"
-                                 onerror="this.src='https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=2'; this.onerror=null;">
-                            Continue with Google
-                        </button>
-                        <button class="w-full flex items-center justify-center px-6 py-3 border border-border rounded-lg hover:bg-surface transition-custom">
-                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1e921b346-1761989128967.png" 
-                                 alt="Microsoft Live logo for authentication" 
-                                 class="w-5 h-5 mr-3"
-                                 onerror="this.src='https://images.unsplash.com/photo-1633419461186-7d40a38105ec?q=80&w=100&auto=format&fit=crop'; this.onerror=null;">
-                            Continue with Microsoft Live
-                        </button>
-                        <button class="w-full flex items-center justify-center px-6 py-3 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-custom">
-                            <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        <!-- Quick Auth Buttons -->
+                        <button class="w-full px-6 py-4 bg-accent text-white text-center rounded-lg hover:bg-accent-600 transition-custom font-semibold text-lg open-auth-modal" data-mode="register">
+                            <svg class="inline-block w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
                             </svg>
-                            Import from LinkedIn
+                            Create New Account
                         </button>
+                        
+                        <button class="w-full px-6 py-4 border-2 border-accent text-accent text-center rounded-lg hover:bg-accent-50 transition-custom font-semibold text-lg open-auth-modal" data-mode="login">
+                            <svg class="inline-block w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                            </svg>
+                            Sign In to Existing Account
+                        </button>
+                        
+                        <div class="relative my-6">
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="w-full border-t border-border"></div>
+                            </div>
+                            <div class="relative flex justify-center text-sm">
+                                <span class="px-4 bg-white text-text-secondary">Or</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Social Login Notice -->
+                        <div class="p-4 bg-surface rounded-lg border border-border">
+                            <p class="text-sm text-text-secondary text-center mb-3">
+                                <svg class="inline-block w-5 h-5 mr-2 text-warning" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"/>
+                                </svg>
+                                Social login coming soon! 
+                            </p>
+                            <p class="text-xs text-text-secondary text-center">
+                                Google, Microsoft, and LinkedIn login options will be available in a future update.
+                            </p>
+                        </div>
                     </div>
                     
                     <div class="mt-8 text-center">
-                        <button class="btn-accent" onclick="nextProfessionalStep()">Continue</button>
+                        <button class="btn-accent" onclick="nextProfessionalStep()">
+                            <svg class="inline-block w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                            </svg>
+                            Continue to Profile Setup
+                        </button>
                     </div>
                 </div>
             </div>
@@ -597,7 +682,7 @@
                             </select>
                         </div>
                         <div class="md:col-span-2">
-                            <label class="block text-sm font-medium text-text-primary mb-2">Profile Photo</label>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Profile Photo <span class="text-text-secondary font-normal">(Optional)</span></label>
                             <div class="flex items-center space-x-4">
                                 <div class="w-20 h-20 bg-surface rounded-full flex items-center justify-center border-2 border-dashed border-border">
                                     <svg class="w-8 h-8 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -940,145 +1025,29 @@
 
     <script>
         // Mobile menu toggle
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Profile type selection
-        document.getElementById('business-option').addEventListener('click', function() {
-            document.getElementById('profile-type-section').classList.add('hidden');
-            document.getElementById('business-wizard').classList.remove('hidden');
-        });
-
-        document.getElementById('professional-option').addEventListener('click', function() {
-            document.getElementById('profile-type-section').classList.add('hidden');
-            document.getElementById('professional-wizard').classList.remove('hidden');
-        });
-
-        // Business wizard navigation
-        let currentBusinessStep = 1;
-        const totalBusinessSteps = 5;
-
-        function nextBusinessStep() {
-            if (currentBusinessStep < totalBusinessSteps) {
-                document.getElementById(`business-step-${currentBusinessStep}`).classList.add('hidden');
-                currentBusinessStep++;
-                document.getElementById(`business-step-${currentBusinessStep}`).classList.remove('hidden');
-                updateBusinessProgress();
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (mobileMenu) {
+                        mobileMenu.classList.toggle('hidden');
+                    }
+                });
             }
-        }
-
-        function prevBusinessStep() {
-            if (currentBusinessStep > 1) {
-                document.getElementById(`business-step-${currentBusinessStep}`).classList.add('hidden');
-                currentBusinessStep--;
-                document.getElementById(`business-step-${currentBusinessStep}`).classList.remove('hidden');
-                updateBusinessProgress();
-            }
-        }
-
-        function updateBusinessProgress() {
-            const progress = (currentBusinessStep / totalBusinessSteps) * 100;
-            document.getElementById('business-progress').style.width = `${progress}%`;
-            document.getElementById('business-current-step').textContent = currentBusinessStep;
-        }
-
-        // Professional wizard navigation
-        let currentProfessionalStep = 1;
-        const totalProfessionalSteps = 5;
-
-        function nextProfessionalStep() {
-            if (currentProfessionalStep < totalProfessionalSteps) {
-                document.getElementById(`professional-step-${currentProfessionalStep}`).classList.add('hidden');
-                currentProfessionalStep++;
-                document.getElementById(`professional-step-${currentProfessionalStep}`).classList.remove('hidden');
-                updateProfessionalProgress();
-            }
-        }
-
-        function prevProfessionalStep() {
-            if (currentProfessionalStep > 1) {
-                document.getElementById(`professional-step-${currentProfessionalStep}`).classList.add('hidden');
-                currentProfessionalStep--;
-                document.getElementById(`professional-step-${currentProfessionalStep}`).classList.remove('hidden');
-                updateProfessionalProgress();
-            }
-        }
-
-        function updateProfessionalProgress() {
-            const progress = (currentProfessionalStep / totalProfessionalSteps) * 100;
-            document.getElementById('professional-progress').style.width = `${progress}%`;
-            document.getElementById('professional-current-step').textContent = currentProfessionalStep;
-        }
-
-        // Profile publishing
-        function publishBusinessProfile() {
-            // Simulate profile creation
-            setTimeout(() => {
-                document.getElementById('success-modal').classList.remove('hidden');
-                document.getElementById('success-modal').classList.add('flex');
-            }, 1000);
-        }
-
-        function publishProfessionalProfile() {
-            // Simulate profile creation
-            setTimeout(() => {
-                document.getElementById('success-modal').classList.remove('hidden');
-                document.getElementById('success-modal').classList.add('flex');
-            }, 1000);
-        }
-
-        // Form validation
-        document.querySelectorAll('input[required], textarea[required], select[required]').forEach(field => {
-            field.addEventListener('blur', function() {
-                if (!this.value.trim()) {
-                    this.classList.add('border-error');
-                } else {
-                    this.classList.remove('border-error');
-                }
-            });
+            
+            // Debug: Log when DOM is ready
+            console.log('✅ DOM Content Loaded');
+            console.log('📦 Utils available:', typeof Utils !== 'undefined');
+            console.log('🔐 Auth available:', typeof auth !== 'undefined');
+            console.log('📋 AuthModal available:', typeof window.authModal !== 'undefined');
         });
-
-        // Auto-save functionality
-        let autoSaveTimer;
-        document.querySelectorAll('input, textarea, select').forEach(field => {
-            field.addEventListener('input', function() {
-                clearTimeout(autoSaveTimer);
-                autoSaveTimer = setTimeout(() => {
-                    // Simulate auto-save
-                    console.log('Auto-saving profile data...');
-                }, 2000);
-            });
-        });
-
-        // File upload simulation
-        document.querySelectorAll('[id*="upload"], .cursor-pointer').forEach(element => {
-            element.addEventListener('click', function() {
-                if (this.classList.contains('cursor-pointer') || this.id.includes('upload')) {
-                    // Simulate file selection
-                    const input = document.createElement('input');
-                    input.type = 'file';
-                    input.accept = 'image/*';
-                    input.click();
-                }
-            });
-        });
-
-        // URL parameter handling for direct profile type selection
-        const urlParams = new URLSearchParams(window.location.search);
-        const profileType = urlParams.get('type');
-        
-        if (profileType === 'business') {
-            document.getElementById('profile-type-section').classList.add('hidden');
-            document.getElementById('business-wizard').classList.remove('hidden');
-        } else if (profileType === 'professional') {
-            document.getElementById('profile-type-section').classList.add('hidden');
-            document.getElementById('professional-wizard').classList.remove('hidden');
-        }
     </script>
     
     <!-- Main JavaScript -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/auth-modal.js"></script>
     <script src="../js/main.js"></script>
     <!-- Profile Wizard specific JavaScript -->
     <script src="../js/profile-wizard.js"></script>

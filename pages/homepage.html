@@ -35,9 +35,16 @@
                     <a href="member_profile_pages.html" class="text-text-secondary hover:text-primary transition-custom">Community</a>
                 </div>
                 
-                <!-- CTA Button -->
-                <div class="hidden md:block">
-                    <a href="profile_creation_wizard.html" class="btn-primary">Join Now</a>
+                <!-- Auth Buttons -->
+                <div class="hidden md:flex items-center space-x-4" id="auth-buttons">
+                    <button class="text-text-secondary hover:text-primary transition-custom open-auth-modal" data-mode="login">Sign In</button>
+                    <button class="btn-primary open-auth-modal" data-mode="register">Join Now</button>
+                </div>
+                
+                <!-- User Menu (hidden by default) -->
+                <div class="hidden md:flex items-center space-x-4" id="user-menu" style="display: none;">
+                    <span class="text-text-secondary" id="user-greeting">Welcome back!</span>
+                    <button class="btn-outline" id="logout-btn">Sign Out</button>
                 </div>
                 
                 <!-- Mobile Menu Button -->
@@ -56,7 +63,8 @@
                     <a href="professional_network.html" class="block px-3 py-2 text-text-secondary hover:text-primary">Professionals</a>
                     <a href="community_dashboard.html" class="block px-3 py-2 text-text-secondary hover:text-primary">My Dashboard</a>
                     <a href="member_profile_pages.html" class="block px-3 py-2 text-text-secondary hover:text-primary">Community</a>
-                    <a href="profile_creation_wizard.html" class="block px-3 py-2 btn-primary text-center mt-4">Join Now</a>
+                    <button class="block px-3 py-2 text-text-secondary hover:text-primary transition-custom w-full text-left open-auth-modal" data-mode="login">Sign In</button>
+                    <button class="block px-3 py-2 btn-primary text-center mt-4 open-auth-modal" data-mode="register">Join Now</button>
                 </div>
             </div>
         </div>
@@ -611,7 +619,28 @@
     </script>
     
     <!-- Main JavaScript -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/auth-modal.js"></script>
     <script src="../js/main.js"></script>
+    
+    <script>
+        // Initialize homepage auth state
+        document.addEventListener('DOMContentLoaded', () => {
+            if (auth.isAuthenticated()) {
+                const user = auth.getCurrentUser();
+                document.getElementById('auth-buttons').style.display = 'none';
+                document.getElementById('user-menu').style.display = 'flex';
+                document.getElementById('user-greeting').textContent = `Welcome, ${user.firstName}!`;
+            }
+            
+            // Logout handler
+            document.getElementById('logout-btn')?.addEventListener('click', () => {
+                auth.logout();
+                window.location.reload();
+            });
+        });
+    </script>
 <script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
 </body>
 </html>
