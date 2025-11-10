@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Details - ConnectHub Pro</title>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body class="bg-background">
+    <!-- Navigation Header -->
+    <nav class="bg-white shadow-custom-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <svg class="h-10 w-10 text-primary" viewBox="0 0 40 40" fill="currentColor">
+                        <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 20h16M20 12v16" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="15" cy="15" r="2" fill="currentColor"/>
+                        <circle cx="25" cy="25" r="2" fill="currentColor"/>
+                    </svg>
+                    <span class="ml-3 text-xl font-bold text-primary">ConnectHub Pro</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="homepage.html" class="text-text-secondary hover:text-primary transition-custom">Home</a>
+                    <a href="business_directory.html" class="text-text-secondary hover:text-primary transition-custom">Businesses</a>
+                    <a href="professional_network.html" class="text-text-secondary hover:text-primary transition-custom">Professionals</a>
+                    <a href="my_profile.html" class="text-text-secondary hover:text-primary transition-custom">My Profile</a>
+                    <a href="member_profile_pages.html" class="text-text-secondary hover:text-primary transition-custom">Community</a>
+                </div>
+                
+                <!-- Auth Buttons -->
+                <div class="hidden md:flex items-center space-x-4" id="auth-buttons">
+                    <button class="text-text-secondary hover:text-primary transition-custom open-auth-modal" data-mode="login">Sign In</button>
+                    <button class="btn-primary open-auth-modal" data-mode="register">Join Now</button>
+                </div>
+                
+                <!-- User Menu (hidden by default) -->
+                <div class="hidden md:flex items-center space-x-4" id="user-menu" style="display: none;">
+                    <span class="text-text-secondary" id="user-greeting">Welcome back!</span>
+                    <button class="btn-outline logout-btn" id="logout-btn">Sign Out</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Detail Section -->
+    <main class="py-12">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Loading State -->
+            <div id="loading" class="text-center py-16">
+                <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-primary mx-auto"></div>
+                <p class="mt-4 text-text-secondary">Loading profile...</p>
+            </div>
+
+            <!-- Profile Content -->
+            <div id="profile-content" class="hidden">
+                <!-- Back Button -->
+                <button onclick="history.back()" class="mb-6 flex items-center text-primary hover:text-primary-600 transition-custom">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    Back
+                </button>
+
+                <!-- Profile Header Card -->
+                <div class="card mb-8">
+                    <div class="flex items-start gap-6">
+                        <div id="profile-avatar" class="w-32 h-32 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg class="w-16 h-16 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h1 id="profile-name" class="text-3xl font-bold text-primary mb-2"></h1>
+                            <p id="profile-title" class="text-xl text-accent-600 mb-4"></p>
+                            <div id="profile-meta" class="flex flex-wrap gap-4 text-text-secondary"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Section -->
+                <div class="card mb-8">
+                    <h2 class="text-2xl font-bold text-primary mb-4">About</h2>
+                    <p id="profile-description" class="text-text-secondary leading-relaxed"></p>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="card mb-8">
+                    <h2 class="text-2xl font-bold text-primary mb-6">Contact Information</h2>
+                    <div id="contact-info" class="grid md:grid-cols-2 gap-6"></div>
+                </div>
+
+                <!-- Skills Section (Professional only) -->
+                <div id="skills-section" class="card mb-8 hidden">
+                    <h2 class="text-2xl font-bold text-primary mb-6">Skills & Expertise</h2>
+                    <div id="skills-container" class="flex flex-wrap gap-3"></div>
+                </div>
+
+                <!-- Business Details (Business only) -->
+                <div id="business-details" class="card mb-8 hidden">
+                    <h2 class="text-2xl font-bold text-primary mb-6">Business Details</h2>
+                    <div id="business-info" class="grid md:grid-cols-2 gap-6"></div>
+                </div>
+            </div>
+
+            <!-- Error State -->
+            <div id="error" class="hidden text-center py-16">
+                <svg class="w-16 h-16 text-error mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <h2 class="text-2xl font-bold text-primary mb-2">Profile Not Found</h2>
+                <p class="text-text-secondary mb-6">The profile you're looking for doesn't exist.</p>
+                <button onclick="history.back()" class="btn-primary">Go Back</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary-900 text-white py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-primary-100">&copy; 2025 ConnectHub Pro. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/auth-modal.js"></script>
+    <script src="../js/main.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Initialize auth state
+            initializeAuthState();
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            const profileId = urlParams.get('id');
+            const profileType = urlParams.get('type');
+
+            if (!profileId || !profileType) {
+                showError();
+                return;
+            }
+
+            await loadProfileDetail(profileId, profileType);
+        });
+
+        function initializeAuthState() {
+            if (typeof auth !== 'undefined' && auth.isAuthenticated()) {
+                const user = auth.user;
+                if (user) {
+                    const authButtons = document.getElementById('auth-buttons');
+                    const userMenu = document.getElementById('user-menu');
+                    const userGreeting = document.getElementById('user-greeting');
+                    const logoutBtn = document.getElementById('logout-btn');
+                    
+                    if (authButtons) authButtons.style.display = 'none';
+                    if (userMenu) userMenu.style.display = 'flex';
+                    if (userGreeting) userGreeting.textContent = `Welcome, ${user.firstName}!`;
+                    if (logoutBtn) logoutBtn.addEventListener('click', () => auth.logout());
+                }
+            }
+        }
+
+        async function loadProfileDetail(profileId, profileType) {
+            try {
+                const response = await fetch('http://localhost:3000/api/profiles/all');
+                const result = await response.json();
+
+                if (!result.success || !result.data) {
+                    showError();
+                    return;
+                }
+
+                // Find the specific profile
+                const profile = result.data.find(p => p.id == profileId && p.user_type === profileType);
+
+                if (!profile) {
+                    showError();
+                    return;
+                }
+
+                displayProfile(profile);
+            } catch (error) {
+                console.error('Error loading profile:', error);
+                showError();
+            }
+        }
+
+        function displayProfile(profile) {
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('profile-content').classList.remove('hidden');
+
+            const isBusiness = profile.user_type === 'business';
+
+            // Profile Name
+            document.getElementById('profile-name').textContent = isBusiness ? 
+                profile.name : 
+                `${profile.first_name} ${profile.last_name}`;
+
+            // Profile Title
+            document.getElementById('profile-title').textContent = isBusiness ?
+                (profile.category || 'Business') :
+                (profile.name || 'Professional');
+
+            // Profile Avatar (business gets different icon)
+            if (isBusiness) {
+                document.getElementById('profile-avatar').innerHTML = `
+                    <svg class="w-16 h-16 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z"/>
+                    </svg>
+                `;
+            }
+
+            // Description
+            document.getElementById('profile-description').textContent = profile.description || 'No description provided';
+
+            // Contact Info
+            const contactInfo = document.getElementById('contact-info');
+            contactInfo.innerHTML = '';
+
+            if (profile.email) {
+                contactInfo.innerHTML += `
+                    <div>
+                        <label class="block text-sm font-medium text-text-primary mb-2">Email</label>
+                        <a href="mailto:${profile.email}" class="text-primary hover:underline">${profile.email}</a>
+                    </div>
+                `;
+            }
+
+            if (profile.phone) {
+                contactInfo.innerHTML += `
+                    <div>
+                        <label class="block text-sm font-medium text-text-primary mb-2">Phone</label>
+                        <a href="tel:${profile.phone}" class="text-primary hover:underline">${profile.phone}</a>
+                    </div>
+                `;
+            }
+
+            if (profile.website) {
+                contactInfo.innerHTML += `
+                    <div>
+                        <label class="block text-sm font-medium text-text-primary mb-2">${isBusiness ? 'Website' : 'LinkedIn'}</label>
+                        <a href="${profile.website}" target="_blank" class="text-primary hover:underline">${profile.website}</a>
+                    </div>
+                `;
+            }
+
+            if (profile.address) {
+                contactInfo.innerHTML += `
+                    <div>
+                        <label class="block text-sm font-medium text-text-primary mb-2">Address</label>
+                        <p class="text-text-secondary">${profile.address}</p>
+                    </div>
+                `;
+            }
+
+            // Business Specific
+            if (isBusiness) {
+                const businessDetails = document.getElementById('business-details');
+                const businessInfo = document.getElementById('business-info');
+                businessDetails.classList.remove('hidden');
+
+                if (profile.founded_year) {
+                    businessInfo.innerHTML += `
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Founded Year</label>
+                            <p class="text-text-secondary">${profile.founded_year}</p>
+                        </div>
+                    `;
+                }
+
+                if (profile.category) {
+                    businessInfo.innerHTML += `
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Category</label>
+                            <p class="text-text-secondary">${profile.category.charAt(0).toUpperCase() + profile.category.slice(1)}</p>
+                        </div>
+                    `;
+                }
+            }
+
+            // Professional Specific - Skills
+            if (!isBusiness && profile.skills) {
+                const skillsSection = document.getElementById('skills-section');
+                const skillsContainer = document.getElementById('skills-container');
+                skillsSection.classList.remove('hidden');
+
+                const skills = JSON.parse(profile.skills);
+                skills.forEach(skill => {
+                    const skillTag = document.createElement('span');
+                    skillTag.className = 'px-4 py-2 bg-primary-100 text-primary rounded-full text-sm font-medium';
+                    skillTag.textContent = skill;
+                    skillsContainer.appendChild(skillTag);
+                });
+
+                if (profile.category) {
+                    contactInfo.innerHTML += `
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Company</label>
+                            <p class="text-text-secondary">${profile.category}</p>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        function showError() {
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('error').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
+

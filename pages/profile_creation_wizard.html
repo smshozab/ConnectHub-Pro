@@ -44,7 +44,7 @@
                     <a href="homepage.html" class="text-text-secondary hover:text-primary transition-custom">Home</a>
                     <a href="business_directory.html" class="text-text-secondary hover:text-primary transition-custom">Businesses</a>
                     <a href="professional_network.html" class="text-text-secondary hover:text-primary transition-custom">Professionals</a>
-                    <a href="community_dashboard.html" class="text-text-secondary hover:text-primary transition-custom">My Dashboard</a>
+                    <a href="my_profile.html" class="text-text-secondary hover:text-primary transition-custom">My Profile</a>
                     <a href="member_profile_pages.html" class="text-text-secondary hover:text-primary transition-custom">Community</a>
                 </div>
                 
@@ -277,11 +277,11 @@
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-sm font-medium text-text-primary mb-2">Business Name *</label>
-                            <input type="text" class="input-field" placeholder="Enter your business name" required>
+                            <input type="text" id="business-name" name="businessName" class="input-field" placeholder="Enter your business name" required>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-text-primary mb-2">Business Category *</label>
-                            <select class="input-field" required>
+                            <select id="business-category" name="category" class="input-field" required>
                                 <option value="">Select category</option>
                                 <option value="technology">Technology</option>
                                 <option value="marketing">Marketing</option>
@@ -294,28 +294,28 @@
                             </select>
                         </div>
                         <div class="md:col-span-2">
-                            <label class="block text-sm font-medium text-text-primary mb-2">Business Description *</label>
-                            <textarea class="input-field h-32" placeholder="Describe your business and what makes it unique..." required></textarea>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Business Description * (min 20 chars)</label>
+                            <textarea id="business-description" name="description" class="input-field h-32" placeholder="Describe your business and what makes it unique..." required minlength="20"></textarea>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-text-primary mb-2">Phone Number *</label>
-                            <input type="tel" class="input-field" placeholder="(555) 123-4567" required>
+                            <input type="tel" id="business-phone" name="phone" class="input-field" placeholder="(555) 123-4567" required>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-text-primary mb-2">Email Address *</label>
-                            <input type="email" class="input-field" placeholder="business@example.com" required>
+                            <input type="email" id="business-email" name="email" class="input-field" placeholder="business@example.com" required>
                         </div>
                         <div class="md:col-span-2">
                             <label class="block text-sm font-medium text-text-primary mb-2">Business Address</label>
-                            <input type="text" class="input-field" placeholder="123 Main St, City, State 12345">
+                            <input type="text" id="business-address" name="address" class="input-field" placeholder="123 Main St, City, State 12345">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-text-primary mb-2">Website</label>
-                            <input type="url" class="input-field" placeholder="https://www.yourbusiness.com">
+                            <input type="url" id="business-website" name="website" class="input-field" placeholder="https://www.yourbusiness.com">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-text-primary mb-2">Founded Year</label>
-                            <input type="number" class="input-field" placeholder="2020" min="1900" max="2025">
+                            <input type="number" id="business-founded" name="foundedYear" class="input-field" placeholder="2020" min="1900" max="2025">
                         </div>
                     </div>
                     
@@ -896,18 +896,22 @@
                                     <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
                                 </svg>
                             </div>
-                            <div class="flex-1">
-                                <h4 class="text-lg font-semibold text-primary mb-2">John Doe</h4>
-                                <p class="text-accent font-medium mb-2">Senior UX Designer</p>
-                                <p class="text-text-secondary text-sm mb-3">Your professional summary will appear here...</p>
-                                <div class="flex flex-wrap gap-2 mb-3">
-                                    <span class="px-2 py-1 bg-primary-100 text-primary text-xs rounded">UX Design</span>
-                                    <span class="px-2 py-1 bg-primary-100 text-primary text-xs rounded">Figma</span>
-                                    <span class="px-2 py-1 bg-primary-100 text-primary text-xs rounded">Prototyping</span>
+                            <div class="flex-1" id="profile-review-summary">
+                                <h4 class="text-lg font-semibold text-primary mb-2" id="review-full-name">
+                                    <!-- User's full name will appear here -->
+                                </h4>
+                                <p class="text-accent font-medium mb-2" id="review-title">
+                                    <!-- User's professional title will appear here -->
+                                </p>
+                                <p class="text-text-secondary text-sm mb-3" id="review-summary">
+                                    <!-- User's professional summary will appear here -->
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3" id="review-skills">
+                                    <!-- User's selected skills/interests will appear here as tags -->
                                 </div>
                                 <div class="flex items-center space-x-4">
-                                    <span class="text-sm text-text-secondary">📧 john@example.com</span>
-                                    <span class="text-sm text-text-secondary">📍 City, State</span>
+                                    <!-- <span class="text-sm text-text-secondary">📧 john@example.com</span>
+                                    <span class="text-sm text-text-secondary">📍 City, State</span> -->
                                 </div>
                             </div>
                         </div>
@@ -1044,12 +1048,12 @@
         });
     </script>
     
-    <!-- Main JavaScript -->
+    <!-- Main JavaScript - LOAD MAIN.JS FIRST! -->
+    <script src="../js/main.js"></script>
     <script src="../js/utils.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/auth-modal.js"></script>
-    <script src="../js/main.js"></script>
-    <!-- Profile Wizard specific JavaScript -->
+    <!-- Profile Wizard specific JavaScript - MUST LOAD AFTER MAIN.JS -->
     <script src="../js/profile-wizard.js"></script>
 <script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
 </body>

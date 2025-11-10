@@ -147,3 +147,4 @@ Open browser: `http://localhost:8080/pages/homepage.html`
 
 **You have a production-ready professional networking platform!** Just add the API integration scripts and you're done! 🚀
 
+

@@ -224,3 +224,4 @@ If debug page shows CORS header is NOT FOUND, then:
 
 Please check the cors-debug.html page and tell me what Test 2 shows!
 
+

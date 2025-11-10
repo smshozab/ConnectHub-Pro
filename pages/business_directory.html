@@ -31,13 +31,20 @@
                     <a href="homepage.html" class="text-text-secondary hover:text-primary transition-custom">Home</a>
                     <a href="business_directory.html" class="text-primary font-semibold border-b-2 border-primary pb-1">Businesses</a>
                     <a href="professional_network.html" class="text-text-secondary hover:text-primary transition-custom">Professionals</a>
-                    <a href="community_dashboard.html" class="text-text-secondary hover:text-primary transition-custom">My Dashboard</a>
+                    <a href="my_profile.html" class="text-text-secondary hover:text-primary transition-custom">My Profile</a>
                     <a href="member_profile_pages.html" class="text-text-secondary hover:text-primary transition-custom">Community</a>
                 </div>
                 
-                <!-- CTA Button -->
-                <div class="hidden md:block">
-                    <a href="profile_creation_wizard.html" class="btn-primary">Join Now</a>
+                <!-- Auth Buttons -->
+                <div class="hidden md:flex items-center space-x-4" id="auth-buttons">
+                    <button class="text-text-secondary hover:text-primary transition-custom open-auth-modal" data-mode="login">Sign In</button>
+                    <button class="btn-primary open-auth-modal" data-mode="register">Join Now</button>
+                </div>
+                
+                <!-- User Menu (hidden by default) -->
+                <div class="hidden md:flex items-center space-x-4" id="user-menu" style="display: none;">
+                    <span class="text-text-secondary" id="user-greeting">Welcome back!</span>
+                    <button class="btn-outline logout-btn" id="logout-btn">Sign Out</button>
                 </div>
                 
                 <!-- Mobile Menu Button -->
@@ -54,9 +61,10 @@
                     <a href="homepage.html" class="block px-3 py-2 text-text-secondary hover:text-primary">Home</a>
                     <a href="business_directory.html" class="block px-3 py-2 text-primary font-semibold">Businesses</a>
                     <a href="professional_network.html" class="block px-3 py-2 text-text-secondary hover:text-primary">Professionals</a>
-                    <a href="community_dashboard.html" class="block px-3 py-2 text-text-secondary hover:text-primary">My Dashboard</a>
+                    <a href="my_profile.html" class="block px-3 py-2 text-text-secondary hover:text-primary">My Profile</a>
                     <a href="member_profile_pages.html" class="block px-3 py-2 text-text-secondary hover:text-primary">Community</a>
-                    <a href="profile_creation_wizard.html" class="block px-3 py-2 btn-primary text-center mt-4">Join Now</a>
+                    <button class="block px-3 py-2 text-text-secondary hover:text-primary transition-custom w-full text-left open-auth-modal" data-mode="login">Sign In</button>
+                    <button class="block px-3 py-2 btn-primary text-center mt-4 open-auth-modal" data-mode="register">Join Now</button>
                 </div>
             </div>
         </div>
@@ -196,7 +204,12 @@
 
             <!-- Business Grid -->
             <div id="business-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Business Card 1 -->
+                <div class="col-span-full text-center py-12">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+                    <p class="mt-4 text-text-secondary">Loading businesses...</p>
+                </div>
+            </div>
+               <!-- Cards loaded dynamically from database -->
                 <div class="card hover:shadow-custom-lg transition-all duration-300 group business-card" data-category="food" data-rating="4.9">
                     <div class="relative mb-4">
                         <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
@@ -526,16 +539,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Load More Button -->
-            <div class="text-center mt-12">
-                <button id="load-more" class="btn-primary px-8 py-4">
-                    Load More Businesses
-                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                </button>
-            </div>
         </div>
     </section>
 
@@ -686,6 +689,152 @@
     </footer>
 
     <script>
+        // Load businesses from database
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Initialize auth state
+            initializeAuthState();
+            
+            // Load businesses
+            await loadBusinesses();
+        });
+
+        function initializeAuthState() {
+            if (auth.isAuthenticated()) {
+                const user = auth.user;
+                if (user) {
+                    document.getElementById('auth-buttons').style.display = 'none';
+                    document.getElementById('user-menu').style.display = 'flex';
+                    document.getElementById('user-greeting').textContent = `Welcome, ${user.firstName}!`;
+                    
+                    // Setup logout
+                    document.getElementById('logout-btn').addEventListener('click', () => {
+                        auth.logout();
+                    });
+                }
+            }
+        }
+
+        async function loadBusinesses() {
+            const businessGrid = document.getElementById('business-grid');
+            try {
+                const response = await fetch('http://localhost:3000/api/profiles/all');
+                const result = await response.json();
+                
+                if (!result.success || !result.data) {
+                    businessGrid.innerHTML = '<div class="col-span-full text-center py-12"><p class="text-text-secondary">No businesses found.</p></div>';
+                    return;
+                }
+
+                // Filter only business profiles
+                const businesses = result.data.filter(p => p.user_type === 'business');
+                
+                if (businesses.length === 0) {
+                    businessGrid.innerHTML = '<div class="col-span-full text-center py-12"><p class="text-text-secondary">No businesses found.</p></div>';
+                    return;
+                }
+
+                // Clear loading message
+                businessGrid.innerHTML = '';
+
+                // Store businesses globally for filtering
+                allBusinesses = businesses;
+
+                // Create business cards
+                businesses.forEach(business => {
+                    const card = createBusinessCard(business);
+                    businessGrid.appendChild(card);
+                });
+
+                document.getElementById('results-count').textContent = `Showing ${businesses.length} businesses`;
+
+                // Check for URL search params
+                const urlParams = new URLSearchParams(window.location.search);
+                const searchParam = urlParams.get('search');
+                const categoryParam = urlParams.get('category');
+
+                if (searchParam) {
+                    document.getElementById('search-input').value = searchParam;
+                    activeFilters.search = searchParam;
+                    updateResults();
+                }
+                if (categoryParam) {
+                    document.getElementById('category-filter').value = categoryParam;
+                    activeFilters.category = categoryParam;
+                    updateResults();
+                }
+            } catch (error) {
+                console.error('Error loading businesses:', error);
+                businessGrid.innerHTML = '<div class="col-span-full text-center py-12"><p class="text-text-secondary">Failed to load businesses.</p></div>';
+            }
+        }
+
+        function createBusinessCard(business) {
+            const card = document.createElement('div');
+            card.className = 'card hover:shadow-custom-lg transition-all duration-300 group business-card';
+            card.dataset.category = business.category || 'other';
+            
+            card.innerHTML = `
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-primary mb-2">${business.name}</h3>
+                    <p class="text-accent-600 font-medium mb-3">${business.category || 'Business'}</p>
+                    <p class="text-text-secondary mb-4">${business.description || 'No description'}</p>
+                    
+                    <div class="space-y-2 mb-4">
+                        ${business.email ? `
+                            <div class="flex items-center text-sm text-text-secondary">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                                ${business.email}
+                            </div>
+                        ` : ''}
+                        
+                        ${business.phone ? `
+                            <div class="flex items-center text-sm text-text-secondary">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                                ${business.phone}
+                            </div>
+                        ` : ''}
+                        
+                        ${business.address ? `
+                            <div class="flex items-center text-sm text-text-secondary">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                                ${business.address}
+                            </div>
+                        ` : ''}
+                        
+                        ${business.website ? `
+                            <div class="flex items-center text-sm">
+                                <svg class="w-4 h-4 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                                </svg>
+                                <a href="${business.website}" target="_blank" class="text-primary hover:underline">${business.website}</a>
+                            </div>
+                        ` : ''}
+                    </div>
+                    
+                    ${business.founded_year ? `
+                        <div class="text-sm text-text-secondary mb-4">
+                            Founded: ${business.founded_year}
+                        </div>
+                    ` : ''}
+                    
+                    <div class="mt-4 pt-4 border-t border-border">
+                        <a href="profile_detail.html?id=${business.id}&type=business" class="btn-primary w-full text-center">
+                            See More
+                        </a>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+
         // View toggle functionality
         const gridView = document.getElementById('grid-view');
         const listView = document.getElementById('list-view');
@@ -707,61 +856,56 @@
             gridView.classList.add('text-text-secondary');
         });
 
-        // Filter functionality
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const businessCards = document.querySelectorAll('.business-card');
+        // Filter functionality for dynamically loaded businesses
+        let allBusinesses = [];
         const searchInput = document.getElementById('search-input');
         const categoryFilter = document.getElementById('category-filter');
-        const locationFilter = document.getElementById('location-filter');
         const sortSelect = document.getElementById('sort-select');
         const resetFilters = document.getElementById('reset-filters');
         const resultsCount = document.getElementById('results-count');
 
         let activeFilters = {
             search: '',
-            category: '',
-            location: '',
-            rating: false,
-            new: false,
-            verified: false
+            category: ''
         };
 
         function updateResults() {
-            let visibleCount = 0;
-            businessCards.forEach(card => {
-                let shouldShow = true;
+            const businessGrid = document.getElementById('business-grid');
+            let filteredBusinesses = [...allBusinesses];
 
-                // Search filter
-                if (activeFilters.search) {
-                    const text = card.textContent.toLowerCase();
-                    if (!text.includes(activeFilters.search.toLowerCase())) {
-                        shouldShow = false;
-                    }
-                }
+            // Search filter
+            if (activeFilters.search) {
+                const searchTerm = activeFilters.search.toLowerCase();
+                filteredBusinesses = filteredBusinesses.filter(business => {
+                    return (
+                        business.name.toLowerCase().includes(searchTerm) ||
+                        (business.description && business.description.toLowerCase().includes(searchTerm)) ||
+                        (business.category && business.category.toLowerCase().includes(searchTerm)) ||
+                        (business.email && business.email.toLowerCase().includes(searchTerm))
+                    );
+                });
+            }
 
-                // Category filter
-                if (activeFilters.category && card.dataset.category !== activeFilters.category) {
-                    shouldShow = false;
-                }
+            // Category filter
+            if (activeFilters.category) {
+                filteredBusinesses = filteredBusinesses.filter(business => 
+                    business.category === activeFilters.category
+                );
+            }
 
-                // Rating filter
-                if (activeFilters.rating) {
-                    const rating = parseFloat(card.dataset.rating);
-                    if (rating < 4.5) {
-                        shouldShow = false;
-                    }
-                }
-
-                // Show/hide card
-                if (shouldShow) {
-                    card.style.display = 'block';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            resultsCount.textContent = `Showing ${visibleCount} businesses in your area`;
+            // Clear and re-render
+            businessGrid.innerHTML = '';
+            
+            if (filteredBusinesses.length === 0) {
+                businessGrid.innerHTML = '<div class="col-span-full text-center py-12"><p class="text-text-secondary">No businesses found matching your criteria.</p></div>';
+                resultsCount.textContent = 'No businesses found';
+            } else {
+                filteredBusinesses.forEach(business => {
+                    const card = createBusinessCard(business);
+                    businessGrid.appendChild(card);
+                });
+                resultsCount.textContent = `Showing ${filteredBusinesses.length} businesses`;
+            }
         }
 
         // Search input
@@ -872,8 +1016,12 @@
     </script>
     
     <!-- Main JavaScript -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/auth-modal.js"></script>
     <script src="../js/main.js"></script>
     <!-- Business Directory specific JavaScript -->
+    <script src="../js/api-business.js"></script>
     <script src="../js/business-directory.js"></script>
 <script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
 </body>

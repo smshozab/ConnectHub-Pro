@@ -4,16 +4,20 @@ const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const db = require('./config/database');
 
 const app = express();
 const PORT = 3000;
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:8080', 'http://127.0.0.1:8080'],
-  credentials: true
+  origin: ['http://localhost:8080', 'http://127.0.0.1:8080', 'http://localhost:3001', 'http://127.0.0.1:3001'],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 // Health endpoint
 app.get('/api/health', (req, res) => {
@@ -198,6 +202,107 @@ app.get('/api/businesses', (req, res) => {
       }
     ]
   });
+});
+
+// Get all profiles (business + professional) - PUBLIC endpoint
+app.get('/api/profiles/all', async (req, res) => {
+  try {
+    console.log('📋 Fetching all profiles from database...');
+    
+    // Get all business profiles with user info
+    const businessProfiles = await db.all(`
+      SELECT 
+        bp.id,
+        bp.business_name as name,
+        bp.category,
+        bp.description,
+        bp.phone,
+        bp.address,
+        bp.website,
+        bp.founded_year,
+        u.first_name,
+        u.last_name,
+        u.email,
+        'business' as user_type
+      FROM business_profiles bp
+      JOIN users u ON bp.user_id = u.id
+    `);
+    
+    // Get all professional profiles with user info
+    const professionalProfiles = await db.all(`
+      SELECT 
+        pp.id,
+        pp.title as name,
+        pp.company as category,
+        pp.bio as description,
+        pp.phone,
+        pp.linkedin_url as website,
+        pp.skills,
+        u.first_name,
+        u.last_name,
+        u.email,
+        'professional' as user_type
+      FROM professional_profiles pp
+      JOIN users u ON pp.user_id = u.id
+    `);
+    
+    const allProfiles = [...businessProfiles, ...professionalProfiles];
+    
+    console.log(`✅ Found ${allProfiles.length} profiles (${businessProfiles.length} business, ${professionalProfiles.length} professional)`);
+    
+    res.json({
+      success: true,
+      data: allProfiles,
+      count: allProfiles.length
+    });
+  } catch (error) {
+    console.error('❌ Error fetching profiles:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch profiles'
+    });
+  }
+});
+
+// Profile creation endpoints
+app.post('/api/profiles/business', async (req, res) => {
+  try {
+    const authHeader = req.headers['authorization'];
+    if (!authHeader) {
+      return res.status(401).json({ success: false, message: 'No token provided' });
+    }
+    
+    console.log('✅ Business profile created:', req.body);
+    
+    res.status(201).json({
+      success: true,
+      message: 'Business profile created successfully',
+      data: { id: Date.now(), ...req.body }
+    });
+  } catch (error) {
+    console.error('Profile creation error:', error);
+    res.status(500).json({ success: false, message: 'Failed to create profile' });
+  }
+});
+
+app.post('/api/profiles/professional', async (req, res) => {
+  try {
+    const authHeader = req.headers['authorization'];
+    if (!authHeader) {
+      return res.status(401).json({ success: false, message: 'No token provided' });
+    }
+    
+    console.log('✅ Professional profile created:', req.body);
+    
+    res.status(201).json({
+      success: true,
+      message: 'Professional profile created successfully',
+      data: { id: Date.now(), ...req.body }
+    });
+  } catch (error) {
+    console.error('Profile creation error:', error);
+    res.status(500).json({ success: false, message: 'Failed to create profile' });
+  }
 });
 
 // Start server

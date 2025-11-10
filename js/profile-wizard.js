@@ -283,6 +283,11 @@ document.addEventListener('DOMContentLoaded', function() {
             currentStepElement.style.display = 'block';
             console.log('✅ Step element displayed:', currentStepElement.id);
             console.log('✅ Step has content:', currentStepElement.innerHTML.length > 0);
+            
+            // If this is the review step, populate it with form data
+            if (wizardState.currentStep === totalSteps) {
+                populateReviewPage();
+            }
         } else {
             console.error('❌ Step element not found:', `${wizardPrefix}-step-${wizardState.currentStep}`);
             
@@ -300,6 +305,114 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Update navigation buttons
         updateNavigationButtons();
+    }
+    
+    function populateReviewPage() {
+        console.log('📝 Populating review page with form data:', wizardState.formData);
+        
+        const data = wizardState.formData;
+        const profileType = wizardState.profileType;
+        const stepId = `${profileType}-step-${wizardState.currentStep}`;
+        const reviewStep = document.getElementById(stepId);
+        
+        if (!reviewStep) {
+            console.error('❌ Review step not found:', stepId);
+            return;
+        }
+        
+        if (profileType === 'business') {
+            populateBusinessReview(reviewStep, data);
+        } else if (profileType === 'professional') {
+            populateProfessionalReview(reviewStep, data);
+        }
+        
+        console.log('✅ Review page populated successfully');
+    }
+
+    function populateBusinessReview(reviewStep, data) {
+        // Update business name (h4 inside the card)
+        const nameElement = reviewStep.querySelector('h4.text-lg.font-semibold');
+        if (nameElement && data.businessName) {
+            nameElement.textContent = data.businessName;
+            console.log('✅ Updated business name:', data.businessName);
+        }
+        
+        // Update category and founded year
+        const categoryElements = reviewStep.querySelectorAll('p.text-text-secondary');
+        if (categoryElements[0]) {
+            let categoryText = '';
+            if (data.category) categoryText += data.category.charAt(0).toUpperCase() + data.category.slice(1);
+            if (data.foundedYear) categoryText += ` • Founded ${data.foundedYear}`;
+            if (categoryText) {
+                categoryElements[0].textContent = categoryText;
+                console.log('✅ Updated category:', categoryText);
+            }
+        }
+        
+        // Update description
+        if (categoryElements[1] && data.description) {
+            categoryElements[1].textContent = data.description;
+            console.log('✅ Updated description:', data.description);
+        }
+        
+        // Update email and phone
+        const contactSpans = reviewStep.querySelectorAll('span.text-sm.text-text-secondary');
+        if (contactSpans[0] && data.email) {
+            contactSpans[0].textContent = `📧 ${data.email}`;
+            console.log('✅ Updated email:', data.email);
+        }
+        if (contactSpans[1] && data.phone) {
+            contactSpans[1].textContent = `📞 ${data.phone}`;
+            console.log('✅ Updated phone:', data.phone);
+        }
+    }
+
+    function populateProfessionalReview(reviewStep, data) {
+        // Update professional name (h4 inside the card)
+        const nameElement = reviewStep.querySelector('h4.text-lg.font-semibold');
+        if (nameElement && (data.firstName || data.lastName)) {
+            const fullName = `${data.firstName || ''} ${data.lastName || ''}`.trim();
+            nameElement.textContent = fullName || 'Your Name';
+            console.log('✅ Updated professional name:', fullName);
+        }
+        
+        // Update title (the "Senior UX Designer" text - usually has text-accent class)
+        const titleElement = reviewStep.querySelector('.text-accent');
+        if (titleElement && data.title) {
+            titleElement.textContent = data.title;
+            console.log('✅ Updated title:', data.title);
+        }
+        
+        // Update bio/summary
+        const bioElement = reviewStep.querySelector('p.text-text-secondary');
+        if (bioElement && data.bio) {
+            bioElement.textContent = data.bio;
+            console.log('✅ Updated bio:', data.bio);
+        }
+        
+        // Update skills (pill badges)
+        const skillsContainer = reviewStep.querySelector('.flex.flex-wrap.gap-2');
+        if (skillsContainer && data.skills && data.skills.length > 0) {
+            skillsContainer.innerHTML = ''; // Clear existing skills
+            data.skills.forEach(skill => {
+                const skillBadge = document.createElement('span');
+                skillBadge.className = 'px-3 py-1 bg-primary-100 text-primary rounded-full text-sm';
+                skillBadge.textContent = skill;
+                skillsContainer.appendChild(skillBadge);
+            });
+            console.log('✅ Updated skills:', data.skills);
+        }
+        
+        // Update email and location (spans with emojis)
+        const contactSpans = reviewStep.querySelectorAll('span.text-sm.text-text-secondary');
+        if (contactSpans[0] && data.email) {
+            contactSpans[0].textContent = `📧 ${data.email}`;
+            console.log('✅ Updated email:', data.email);
+        }
+        if (contactSpans[1] && data.location) {
+            contactSpans[1].textContent = `📍 ${data.location}`;
+            console.log('✅ Updated location:', data.location);
+        }
     }
 
     function validateCurrentStep() {
@@ -380,10 +493,14 @@ document.addEventListener('DOMContentLoaded', function() {
             isValid = false;
             errorMessage = 'Please enter a valid URL.';
         }
-        // Min length validation
+        // Min length validation (check both HTML5 minlength and data-minLength)
+        else if (field.minLength && value.length < field.minLength) {
+            isValid = false;
+            errorMessage = `Must be at least ${field.minLength} characters (currently ${value.length}).`;
+        }
         else if (field.dataset.minLength && !FormValidator.minLength(value, parseInt(field.dataset.minLength))) {
             isValid = false;
-            errorMessage = `${fieldName} must be at least ${field.dataset.minLength} characters.`;
+            errorMessage = `Must be at least ${field.dataset.minLength} characters (currently ${value.length}).`;
         }
 
         if (!isValid) {
@@ -448,16 +565,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateProgressIndicator() {
         const totalSteps = getTotalSteps();
-        const progressBar = document.querySelector('.progress-bar');
-        const progressText = document.querySelector('.progress-text');
+        const wizardPrefix = wizardState.profileType;
+        const percentage = (wizardState.currentStep / totalSteps) * 100;
         
+        // Update progress bar
+        const progressBar = document.getElementById(`${wizardPrefix}-progress`);
         if (progressBar) {
-            const percentage = (wizardState.currentStep / totalSteps) * 100;
             progressBar.style.width = `${percentage}%`;
+            console.log(`📊 Progress bar updated: ${percentage}%`);
         }
         
-        if (progressText) {
-            progressText.textContent = `Step ${wizardState.currentStep} of ${totalSteps}`;
+        // Update step text
+        const stepText = document.getElementById(`${wizardPrefix}-current-step`);
+        if (stepText) {
+            stepText.textContent = wizardState.currentStep;
+            console.log(`📊 Step text updated: ${wizardState.currentStep} of ${totalSteps}`);
         }
         
         // Update step indicators

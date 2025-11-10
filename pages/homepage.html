@@ -31,7 +31,7 @@
                     <a href="homepage.html" class="text-primary font-semibold border-b-2 border-primary pb-1">Home</a>
                     <a href="business_directory.html" class="text-text-secondary hover:text-primary transition-custom">Businesses</a>
                     <a href="professional_network.html" class="text-text-secondary hover:text-primary transition-custom">Professionals</a>
-                    <a href="community_dashboard.html" class="text-text-secondary hover:text-primary transition-custom">My Dashboard</a>
+                    <a href="my_profile.html" class="text-text-secondary hover:text-primary transition-custom">My Profile</a>
                     <a href="member_profile_pages.html" class="text-text-secondary hover:text-primary transition-custom">Community</a>
                 </div>
                 
@@ -61,10 +61,20 @@
                     <a href="homepage.html" class="block px-3 py-2 text-primary font-semibold">Home</a>
                     <a href="business_directory.html" class="block px-3 py-2 text-text-secondary hover:text-primary">Businesses</a>
                     <a href="professional_network.html" class="block px-3 py-2 text-text-secondary hover:text-primary">Professionals</a>
-                    <a href="community_dashboard.html" class="block px-3 py-2 text-text-secondary hover:text-primary">My Dashboard</a>
+                    <a href="my_profile.html" class="block px-3 py-2 text-text-secondary hover:text-primary">My Profile</a>
                     <a href="member_profile_pages.html" class="block px-3 py-2 text-text-secondary hover:text-primary">Community</a>
-                    <button class="block px-3 py-2 text-text-secondary hover:text-primary transition-custom w-full text-left open-auth-modal" data-mode="login">Sign In</button>
-                    <button class="block px-3 py-2 btn-primary text-center mt-4 open-auth-modal" data-mode="register">Join Now</button>
+                    
+                    <!-- Mobile Auth Buttons (shown when not logged in) -->
+                    <div id="mobile-auth-buttons">
+                        <button class="block px-3 py-2 text-text-secondary hover:text-primary transition-custom w-full text-left open-auth-modal" data-mode="login">Sign In</button>
+                        <button class="block px-3 py-2 btn-primary text-center mt-4 open-auth-modal" data-mode="register">Join Now</button>
+                    </div>
+                    
+                    <!-- Mobile User Menu (shown when logged in) -->
+                    <div id="mobile-user-menu" style="display: none;">
+                        <span class="block px-3 py-2 text-primary font-semibold" id="mobile-user-greeting">Welcome back!</span>
+                        <button class="block px-3 py-2 btn-outline text-center mt-2" id="mobile-logout-btn">Sign Out</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -154,8 +164,8 @@
     </section>
 
     <!-- Quick Search Section -->
-    <section class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- <section class="py-16 bg-white"> -->
+        <!-- <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-primary mb-4">Find Your Perfect Match</h2>
                 <p class="text-lg text-text-secondary">Search across businesses and professionals in your community</p>
@@ -164,16 +174,16 @@
             <div class="max-w-4xl mx-auto">
                 <div class="bg-surface rounded-2xl p-8 shadow-custom-sm">
                     <div class="flex flex-col lg:flex-row gap-4">
-                        <!-- Search Input -->
+                        Search Input
                         <div class="flex-1 relative">
                             <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                             </svg>
-                            <input type="text" placeholder="Search businesses, professionals, or services..." 
+                            <input type="text" id="homepage-search" placeholder="Search businesses, professionals, or services..." 
                                    class="input-field pl-12 text-lg h-14">
                         </div>
                         
-                        <!-- Category Filter -->
+                        Category Filter
                         <div class="relative">
                             <select class="input-field h-14 pr-10 appearance-none bg-white">
                                 <option value="">All Categories</option>
@@ -189,8 +199,8 @@
                             </svg>
                         </div>
                         
-                        <!-- Search Button -->
-                        <button class="btn-primary h-14 px-8 flex items-center justify-center">
+                        Search Button
+                        <button id="homepage-search-btn" class="btn-primary h-14 px-8 flex items-center justify-center">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                             </svg>
@@ -198,7 +208,7 @@
                         </button>
                     </div>
                     
-                    <!-- Quick Filters -->
+                      
                     <div class="flex flex-wrap gap-2 mt-6">
                         <span class="text-sm text-text-secondary mr-2">Popular:</span>
                         <button class="px-3 py-1 bg-primary-100 text-primary rounded-full text-sm hover:bg-primary-200 transition-custom">Web Design</button>
@@ -207,9 +217,9 @@
                         <button class="px-3 py-1 bg-primary-100 text-primary rounded-full text-sm hover:bg-primary-200 transition-custom">Photography</button>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </div> -->
+        <!-- </div> -->
+    <!-- </section> -->
 
     <!-- Featured Business Spotlight -->
     <section class="py-16 bg-surface">
@@ -626,18 +636,135 @@
     
     <script>
         // Initialize homepage auth state
-        document.addEventListener('DOMContentLoaded', () => {
-            if (auth.isAuthenticated()) {
-                const user = auth.getCurrentUser();
-                document.getElementById('auth-buttons').style.display = 'none';
-                document.getElementById('user-menu').style.display = 'flex';
-                document.getElementById('user-greeting').textContent = `Welcome, ${user.firstName}!`;
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Initialize auth state first
+            initializeAuthState();
+
+            // Setup search functionality
+            setupHomepageSearch();
+        });
+
+        function initializeAuthState() {
+            console.log('🔍 Homepage: Initializing auth state...');
+            console.log('🔍 Auth object exists?', typeof auth !== 'undefined');
+            
+            if (typeof auth === 'undefined') {
+                console.error('❌ Auth object not loaded!');
+                return;
             }
+            
+            const isAuthenticated = auth.isAuthenticated();
+            console.log('🔍 Is authenticated?', isAuthenticated);
+            
+            if (isAuthenticated) {
+                const user = auth.user;
+                console.log('🔍 User data:', user);
+                
+                if (user) {
+                    // Desktop menu
+                    const authButtons = document.getElementById('auth-buttons');
+                    const userMenu = document.getElementById('user-menu');
+                    const userGreeting = document.getElementById('user-greeting');
+                    const logoutBtn = document.getElementById('logout-btn');
+                    
+                    // Mobile menu
+                    const mobileAuthButtons = document.getElementById('mobile-auth-buttons');
+                    const mobileUserMenu = document.getElementById('mobile-user-menu');
+                    const mobileUserGreeting = document.getElementById('mobile-user-greeting');
+                    const mobileLogoutBtn = document.getElementById('mobile-logout-btn');
+                    
+                    console.log('✅ Showing user menu, hiding auth buttons');
+                    
+                    // Desktop: Show user menu, hide auth buttons
+                    if (authButtons) authButtons.style.display = 'none';
+                    if (userMenu) userMenu.style.display = 'flex';
+                    if (userGreeting) userGreeting.textContent = `Welcome, ${user.firstName}!`;
+                    
+                    // Mobile: Show user menu, hide auth buttons
+                    if (mobileAuthButtons) mobileAuthButtons.style.display = 'none';
+                    if (mobileUserMenu) mobileUserMenu.style.display = 'block';
+                    if (mobileUserGreeting) mobileUserGreeting.textContent = `Welcome, ${user.firstName}!`;
+                    
+                    // Setup logout functionality (desktop)
+                    if (logoutBtn) {
+                        logoutBtn.addEventListener('click', () => {
+                            auth.logout();
+                        });
+                    }
+                    
+                    // Setup logout functionality (mobile)
+                    if (mobileLogoutBtn) {
+                        mobileLogoutBtn.addEventListener('click', () => {
+                            auth.logout();
+                        });
+                    }
+                    
+                    console.log('✅ Homepage auth initialized for user:', user.firstName);
+                } else {
+                    console.warn('⚠️ User is authenticated but no user data found');
+                }
+            } else {
+                console.log('ℹ️ User not authenticated - showing auth buttons');
+                
+                // User not authenticated - show auth buttons
+                const authButtons = document.getElementById('auth-buttons');
+                const userMenu = document.getElementById('user-menu');
+                const mobileAuthButtons = document.getElementById('mobile-auth-buttons');
+                const mobileUserMenu = document.getElementById('mobile-user-menu');
+                
+                // Desktop
+                if (authButtons) authButtons.style.display = 'flex';
+                if (userMenu) userMenu.style.display = 'none';
+                
+                // Mobile
+                if (mobileAuthButtons) mobileAuthButtons.style.display = 'block';
+                if (mobileUserMenu) mobileUserMenu.style.display = 'none';
+            }
+        }
+
+        function setupHomepageSearch() {
+            const searchInput = document.getElementById('homepage-search');
+            const searchBtn = document.getElementById('homepage-search-btn');
+            const categorySelect = document.querySelector('.input-field.h-14.pr-10');
+
+            function performSearch() {
+                const searchTerm = searchInput.value.trim().toLowerCase();
+                const category = categorySelect.value;
+
+                if (!searchTerm && !category) {
+                    Utils.showNotification('Please enter a search term', 'warning');
+                    return;
+                }
+
+                // Build search URL
+                let targetUrl = '';
+                const params = new URLSearchParams();
+
+                if (searchTerm) params.append('search', searchTerm);
+                if (category) params.append('category', category);
+
+                // Determine which page to redirect to based on category or search all
+                if (category === 'business' || category === 'food' || category === 'technology' || category === 'marketing' || category === 'consulting') {
+                    targetUrl = `business_directory.html?${params.toString()}`;
+                } else if (category === 'professional') {
+                    targetUrl = `professional_network.html?${params.toString()}`;
+                } else {
+                    // Search all - go to community page
+                    targetUrl = `member_profile_pages.html?${params.toString()}`;
+                }
+
+                window.location.href = targetUrl;
+            }
+
+            searchBtn.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') performSearch();
+            });
+        }
             
             // Logout handler
             document.getElementById('logout-btn')?.addEventListener('click', () => {
                 auth.logout();
-                window.location.reload();
             });
         });
     </script>

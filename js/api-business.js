@@ -229,3 +229,4 @@ if (window.location.pathname.includes('business_directory')) {
     });
 }
 
+

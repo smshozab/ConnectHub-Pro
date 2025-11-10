@@ -141,3 +141,4 @@ You can now:
 
 Check the detailed guide: `LOGIN_REGISTRATION_FIX_GUIDE.md`
 
+

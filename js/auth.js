@@ -36,9 +36,9 @@ class AuthManager {
             const data = await response.json();
 
             if (data.success) {
-                this.setAuthData(data.data.token, data.data.user);
+                this.setAuthData(data.token, data.user);
                 Utils.showNotification('Registration successful! Welcome to ConnectHub Pro!', 'success');
-                return { success: true, user: data.data.user };
+                return { success: true, user: data.user };
             } else {
                 Utils.showNotification(data.message || 'Registration failed', 'error');
                 return { success: false, message: data.message };
@@ -63,9 +63,9 @@ class AuthManager {
             const data = await response.json();
 
             if (data.success) {
-                this.setAuthData(data.data.token, data.data.user);
-                Utils.showNotification(`Welcome back, ${data.data.user.firstName}!`, 'success');
-                return { success: true, user: data.data.user };
+                this.setAuthData(data.token, data.user);
+                Utils.showNotification(`Welcome back, ${data.user.firstName}!`, 'success');
+                return { success: true, user: data.user };
             } else {
                 Utils.showNotification(data.message || 'Login failed', 'error');
                 return { success: false, message: data.message };
